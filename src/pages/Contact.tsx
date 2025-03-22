@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,7 +17,7 @@ const Contact = () => {
     firstName: '',
     lastName: '',
     email: '',
-    service: '',
+    service: 'general-question',
     referral: '',
     message: ''
   });
@@ -47,7 +47,7 @@ const Contact = () => {
         firstName: '',
         lastName: '',
         email: '',
-        service: '',
+        service: 'general-question',
         referral: '',
         message: ''
       });
@@ -76,17 +76,17 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Form & Information */}
+        {/* Contact Form & Email */}
         <section className="py-20 bg-white">
           <div className="container px-6 mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="max-w-3xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full">
+                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-8">
                   <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -129,11 +129,13 @@ const Contact = () => {
                       <Select 
                         value={formData.service} 
                         onValueChange={(value) => handleSelectChange('service', value)}
+                        defaultValue="general-question"
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
+                          <SelectItem value="general-question">General Question</SelectItem>
                           <SelectItem value="college-application">College Application Help</SelectItem>
                           <SelectItem value="sat-prep">SAT Prep Classes</SelectItem>
                           <SelectItem value="tutoring">Individual Tutoring</SelectItem>
@@ -152,10 +154,13 @@ const Contact = () => {
                           <SelectValue placeholder="Select an option" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="google">Google Search</SelectItem>
-                          <SelectItem value="friend">Friend/Family Referral</SelectItem>
-                          <SelectItem value="social">Social Media</SelectItem>
-                          <SelectItem value="school">School</SelectItem>
+                          <SelectItem value="word-of-mouth">Word of Mouth</SelectItem>
+                          <SelectItem value="friend-referral">Referral from a Friend</SelectItem>
+                          <SelectItem value="social-media">Social Media</SelectItem>
+                          <SelectItem value="search-engine">Search Engine</SelectItem>
+                          <SelectItem value="online-ad">Online Advertisement</SelectItem>
+                          <SelectItem value="print-ad">Print Advertisement</SelectItem>
+                          <SelectItem value="review-site">Review Site</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -185,63 +190,17 @@ const Contact = () => {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="space-y-8"
+                className="text-center"
               >
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-                  <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-                  <div className="space-y-6">
-                    <div className="flex items-start">
-                      <MapPin className="text-brand-teal mr-4 mt-1" />
-                      <div>
-                        <h3 className="font-medium mb-1">Address</h3>
-                        <p className="text-brand-dark/70">123 Education Lane, Denver, CO 80202</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <Phone className="text-brand-teal mr-4 mt-1" />
-                      <div>
-                        <h3 className="font-medium mb-1">Phone</h3>
-                        <p className="text-brand-dark/70">(303) 555-1234</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <Mail className="text-brand-teal mr-4 mt-1" />
-                      <div>
-                        <h3 className="font-medium mb-1">Email</h3>
-                        <p className="text-brand-dark/70">info@collegeprepservicesllc.com</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <Clock className="text-brand-teal mr-4 mt-1" />
-                      <div>
-                        <h3 className="font-medium mb-1">Hours</h3>
-                        <p className="text-brand-dark/70">Monday - Friday: 9am - 7pm</p>
-                        <p className="text-brand-dark/70">Saturday: 10am - 4pm</p>
-                        <p className="text-brand-dark/70">Sunday: Closed</p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex items-center justify-center mb-2">
+                  <Mail className="text-brand-teal mr-2" />
+                  <h3 className="font-medium">Email</h3>
                 </div>
-
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-80">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196281.12937519177!2d-104.99519898359373!3d39.764337599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b80aa231f17cf%3A0x118ef4f8278a36d6!2sDenver%2C%20CO!5e0!3m2!1sen!2sus!4v1663180104294!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }} 
-                    allowFullScreen 
-                    loading="lazy" 
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="College Prep Services Location"
-                  ></iframe>
-                </div>
+                <p className="text-brand-dark/70">info@collegeprepservicesllc.com</p>
               </motion.div>
             </div>
           </div>
