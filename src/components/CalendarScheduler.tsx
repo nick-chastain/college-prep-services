@@ -50,6 +50,16 @@ const CalendarScheduler = () => {
     setSelectedTime(undefined);
   };
 
+  // Get a user-friendly display of what step we're on for mobile
+  const getStepLabel = () => {
+    switch (currentStep) {
+      case 1: return "Select Date & Time";
+      case 2: return "Your Information";
+      case 3: return "Confirmation";
+      default: return "Select Date & Time";
+    }
+  };
+
   return (
     <Card className="w-full max-w-3xl mx-auto shadow-lg border border-gray-100">
       <CardHeader className="text-center px-4 sm:px-6">
@@ -59,20 +69,32 @@ const CalendarScheduler = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="px-4 sm:px-6">
-        <Tabs defaultValue="step1" value={`step${currentStep}`}>
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="step1" disabled={currentStep !== 1} className="text-xs sm:text-sm">
-              Select Date & Time
-            </TabsTrigger>
-            <TabsTrigger value="step2" disabled={currentStep !== 2} className="text-xs sm:text-sm">
-              Your Information
-            </TabsTrigger>
-            <TabsTrigger value="step3" disabled={currentStep !== 3} className="text-xs sm:text-sm">
-              Confirmation
-            </TabsTrigger>
-          </TabsList>
+        {isMobile ? (
+          // Mobile-friendly tabs alternative - shows current step label
+          <div className="mb-6 text-center">
+            <div className="inline-block bg-muted px-4 py-2 rounded-md text-sm font-medium">
+              {getStepLabel()} (Step {currentStep} of 3)
+            </div>
+          </div>
+        ) : (
+          // Regular tabs for larger screens
+          <Tabs defaultValue="step1" value={`step${currentStep}`}>
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="step1" disabled={currentStep !== 1} className="text-xs sm:text-sm">
+                Select Date & Time
+              </TabsTrigger>
+              <TabsTrigger value="step2" disabled={currentStep !== 2} className="text-xs sm:text-sm">
+                Your Information
+              </TabsTrigger>
+              <TabsTrigger value="step3" disabled={currentStep !== 3} className="text-xs sm:text-sm">
+                Confirmation
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        )}
 
-          <TabsContent value="step1" className="mt-6">
+        <div className="mt-6">
+          {currentStep === 1 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-base md:text-lg font-medium mb-4 flex items-center">
@@ -114,20 +136,20 @@ const CalendarScheduler = () => {
                   ))}
                 </div>
               </div>
-            </div>
 
-            <div className="flex justify-end mt-8">
-              <Button 
-                onClick={nextStep} 
-                disabled={!date || !selectedTime}
-                className="flex items-center gap-2"
-              >
-                Next Step <ArrowRight size={16} />
-              </Button>
+              <div className="flex justify-end mt-8 md:col-span-2">
+                <Button 
+                  onClick={nextStep} 
+                  disabled={!date || !selectedTime}
+                  className="flex items-center gap-2"
+                >
+                  Next Step <ArrowRight size={16} />
+                </Button>
+              </div>
             </div>
-          </TabsContent>
+          )}
 
-          <TabsContent value="step2" className="mt-6">
+          {currentStep === 2 && (
             <form>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -187,41 +209,43 @@ const CalendarScheduler = () => {
                 </Button>
               </div>
             </form>
-          </TabsContent>
+          )}
 
-          <TabsContent value="step3" className="mt-6">
-            <div className="bg-accent rounded-lg p-4 md:p-6 mb-6">
-              <h3 className="text-base md:text-lg font-medium mb-4">Appointment Details</h3>
-              <div className="space-y-3 text-sm md:text-base">
-                <div className="flex justify-between">
-                  <span className="text-brand-dark/70">Date:</span>
-                  <span className="font-medium">{date?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-dark/70">Time:</span>
-                  <span className="font-medium">{selectedTime}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-brand-dark/70">Service:</span>
-                  <span className="font-medium">SAT Prep</span>
+          {currentStep === 3 && (
+            <>
+              <div className="bg-accent rounded-lg p-4 md:p-6 mb-6">
+                <h3 className="text-base md:text-lg font-medium mb-4">Appointment Details</h3>
+                <div className="space-y-3 text-sm md:text-base">
+                  <div className="flex justify-between">
+                    <span className="text-brand-dark/70">Date:</span>
+                    <span className="font-medium">{date?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-dark/70">Time:</span>
+                    <span className="font-medium">{selectedTime}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-dark/70">Service:</span>
+                    <span className="font-medium">SAT Prep</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <p className="text-brand-dark/80 text-xs md:text-sm mb-6">
-              By confirming this appointment, you agree to our cancellation policy. We'll send a confirmation email with details and instructions.
-            </p>
+              <p className="text-brand-dark/80 text-xs md:text-sm mb-6">
+                By confirming this appointment, you agree to our cancellation policy. We'll send a confirmation email with details and instructions.
+              </p>
 
-            <div className="flex justify-between mt-6 md:mt-8">
-              <Button variant="outline" onClick={prevStep}>
-                Back
-              </Button>
-              <Button onClick={handleSubmit}>
-                Confirm Appointment
-              </Button>
-            </div>
-          </TabsContent>
-        </Tabs>
+              <div className="flex justify-between mt-6 md:mt-8">
+                <Button variant="outline" onClick={prevStep}>
+                  Back
+                </Button>
+                <Button onClick={handleSubmit}>
+                  Confirm Appointment
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
       </CardContent>
     </Card>
   );

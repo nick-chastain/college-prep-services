@@ -19,18 +19,23 @@ export function useIsMobile() {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
     
     // Modern approach using addEventListener
-    mql.addEventListener("change", checkIsMobile)
+    const handleChange = () => checkIsMobile()
+    mql.addEventListener("change", handleChange)
     
     // Also listen for resize events as a fallback
     window.addEventListener("resize", checkIsMobile)
     
+    // Check orientation change for mobile devices
+    window.addEventListener("orientationchange", checkIsMobile)
+    
     // Cleanup
     return () => {
-      mql.removeEventListener("change", checkIsMobile)
+      mql.removeEventListener("change", handleChange)
       window.removeEventListener("resize", checkIsMobile)
+      window.removeEventListener("orientationchange", checkIsMobile)
     }
   }, [])
 
-  // Default to desktop if undefined (server-side rendering case)
+  // For SSR, default to desktop if undefined
   return isMobile === undefined ? false : isMobile
 }
