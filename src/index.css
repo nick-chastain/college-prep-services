@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -84,7 +83,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -160,5 +159,28 @@
   
   .delay-300 {
     animation-delay: 0.3s;
+  }
+}
+
+/* Mobile-specific adjustments */
+@layer utilities {
+  .mobile-container {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+  
+  .mobile-padding {
+    @apply py-6 md:py-10 lg:py-12;
+  }
+  
+  .mobile-text {
+    @apply text-sm md:text-base;
+  }
+  
+  .mobile-heading {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .mobile-menu {
+    @apply fixed inset-0 bg-white z-40 overflow-y-auto;
   }
 }

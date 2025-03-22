@@ -2,13 +2,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -38,13 +40,29 @@ const Navbar = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 px-6 lg:px-10",
+        "fixed top-0 w-full z-50 transition-all duration-300 px-4 lg:px-10",
         scrolled ? "py-4 bg-white/90 shadow-sm backdrop-blur-md" : "py-6 bg-transparent"
       )}
     >
       <div className="container flex items-center justify-between mx-auto">
         <Link to="/" className="text-2xl font-bold text-brand-teal transition-opacity duration-300 hover:opacity-80 flex items-center gap-2">
-          <GraduationCap size={28} />
+          {/* Bolder graduation cap icon */}
+          <svg 
+            width="32" 
+            height="32" 
+            viewBox="0 0 24 24" 
+            fill="rgb(87, 155, 142)" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="stroke-brand-teal"
+          >
+            <path 
+              d="M22 10L12 5L2 10L12 15L22 10ZM22 10V16M6 12.5V16.5C6 17.88 8.69 19 12 19C15.31 19 18 17.88 18 16.5V12.5" 
+              stroke="rgb(87, 155, 142)" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </svg>
           College Prep Services
         </Link>
         
