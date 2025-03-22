@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
-import { Menu, X } from 'lucide-react';
+import { Menu, X, GraduationCap } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
@@ -43,7 +43,8 @@ const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between mx-auto">
-        <Link to="/" className="text-2xl font-bold text-brand-teal transition-opacity duration-300 hover:opacity-80">
+        <Link to="/" className="text-2xl font-bold text-brand-teal transition-opacity duration-300 hover:opacity-80 flex items-center gap-2">
+          <GraduationCap size={28} />
           College Prep Services
         </Link>
         

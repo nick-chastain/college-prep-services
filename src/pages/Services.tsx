@@ -10,7 +10,7 @@ const Services = () => {
   const serviceFeatures = [
     {
       title: "College Application Help",
-      description: "Comprehensive guidance through every aspect of the college application process.",
+      description: "Receive expert support for essays, scholarships, and finding the perfect college fit just for you!",
       icon: <GraduationCap size={32} />,
       features: [
         "Personalized college selection strategy",
@@ -23,7 +23,7 @@ const Services = () => {
     },
     {
       title: "SAT Prep Classes",
-      description: "Targeted instruction and practice to maximize your SAT scores with proven strategies.",
+      description: "Join one of our SAT prep classes for expert guidance, practice tests, and strategies to boost your score and confidence!",
       icon: <BookOpen size={32} />,
       features: [
         "Comprehensive content review",
@@ -36,7 +36,7 @@ const Services = () => {
     },
     {
       title: "Individual Tutoring",
-      description: "One-on-one academic support across various high school subjects to improve grades.",
+      description: "Get personalized 1-on-1 tutoring for high school courses to tackle homework and improve your grades, online or in-person!",
       icon: <Book size={32} />,
       features: [
         "Customized learning plans",
@@ -47,6 +47,20 @@ const Services = () => {
         "Regular progress reports"
       ]
     }
+  ];
+
+  const areasServed = [
+    "Arapahoe County", "Centennial", "Cherry Creek", "Douglas County", 
+    "Englewood", "Greenwood Village", "Highlands Ranch", "Littleton", 
+    "Lone Tree", "Parker", "Roxborough Park"
+  ];
+
+  const coursesTutored = [
+    "Algebra I", "Algebra II", "Geometry", "Trigonometry", "Precalculus",
+    "AP Calculus AB (I)", "AP Calculus BC (II)", "Physics (Honors or Standard)",
+    "AP Physics 1 and 2 (Algebra Based)", "AP Physics C (Calculus Based",
+    "Chemistry (Honors or Standard)", "AP Chemistry", "Organic Chemistry",
+    "Biology (Honors or Standard)", "AP Biology"
   ];
 
   return (
@@ -65,7 +79,7 @@ const Services = () => {
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
               <p className="text-lg text-brand-dark/80 leading-relaxed mb-8">
-                We offer comprehensive college preparation services tailored to your individual needs and goals.
+                We provide top-notch college prep services that empower students to excel. From personalized SAT tutoring to expert college essay guidance, we're here to help you navigate the journey to your dream school with confidence and ease.
               </p>
             </motion.div>
           </div>
@@ -158,7 +172,7 @@ const Services = () => {
               viewport={{ once: true, amount: 0.3 }}
               className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center max-w-4xl mx-auto"
             >
-              {["Denver", "Aurora", "Lakewood", "Centennial", "Highlands Ranch", "Littleton", "Englewood", "Cherry Creek"].map((area) => (
+              {areasServed.map((area) => (
                 <div key={area} className="bg-white rounded-xl p-4 shadow-sm">
                   <span className="font-medium text-brand-dark">{area}</span>
                 </div>
@@ -184,59 +198,27 @@ const Services = () => {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="space-y-4"
-              >
-                <h3 className="text-xl font-bold text-brand-teal text-center mb-4">Mathematics</h3>
-                <ul className="space-y-2">
-                  {["Algebra I & II", "Geometry", "Trigonometry", "Pre-Calculus", "Calculus", "Statistics"].map((subject) => (
-                    <li key={subject} className="flex items-center">
-                      <CheckCircle2 size={16} className="text-brand-teal mr-2 flex-shrink-0" />
-                      <span>{subject}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="space-y-4"
-              >
-                <h3 className="text-xl font-bold text-brand-teal text-center mb-4">Science</h3>
-                <ul className="space-y-2">
-                  {["Biology", "Chemistry", "Physics", "Earth Science", "Environmental Science", "Anatomy"].map((subject) => (
-                    <li key={subject} className="flex items-center">
-                      <CheckCircle2 size={16} className="text-brand-teal mr-2 flex-shrink-0" />
-                      <span>{subject}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="space-y-4"
-              >
-                <h3 className="text-xl font-bold text-brand-teal text-center mb-4">Humanities</h3>
-                <ul className="space-y-2">
-                  {["English Literature", "Writing & Composition", "US History", "World History", "Government", "Economics"].map((subject) => (
-                    <li key={subject} className="flex items-center">
-                      <CheckCircle2 size={16} className="text-brand-teal mr-2 flex-shrink-0" />
-                      <span>{subject}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+              {[0, 1, 2].map((columnIndex) => (
+                <motion.div
+                  key={columnIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * columnIndex }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="space-y-4"
+                >
+                  <ul className="space-y-2">
+                    {coursesTutored
+                      .slice(columnIndex * 5, columnIndex * 5 + 5)
+                      .map((subject) => (
+                        <li key={subject} className="flex items-center">
+                          <CheckCircle2 size={16} className="text-brand-teal mr-2 flex-shrink-0" />
+                          <span>{subject}</span>
+                        </li>
+                      ))}
+                  </ul>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>

@@ -147,10 +147,13 @@ const Index = () => {
               >
                 <h2 className="text-3xl md:text-4xl font-bold">Our Philosophy</h2>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  At College Prep Services, we believe that every student deserves personalized attention and guidance through the complex college preparation process. We're committed to helping students discover their unique strengths and interests, and to developing customized approaches that address their specific needs.
+                  At the heart of our philosophy is a commitment to delivering personalized, face-to-face learning experiences that genuinely make a difference in students' lives. Whether through small-group classes, one-on-one tutoring, or expert essay and application counseling, we maximize every moment to provide meaningful, results-driven instruction.
                 </p>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  Our team of experienced educators and college admissions experts is dedicated to empowering students with the knowledge, skills, and confidence they need to succeed academically and navigate the college application process with ease.
+                  In a world of pre-programmed online courses, we make sure your student is dealing with a real person who cares about their success and keeps them committed as they advance towards their goals. We understand that your family is investing both time and money into your student's education, so we ensure every session offers exceptional value by tailoring our approach to meet each student's unique needs and goals.
+                </p>
+                <p className="text-lg text-brand-dark/80 leading-relaxed">
+                  Our goal is to make learning both efficient and impactful, empowering students to achieve their academic and college aspirations with confidence.
                 </p>
                 <Button asChild className="rounded-full px-8 mt-4">
                   <Link to="/about">
