@@ -63,7 +63,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button asChild size="sm" className="rounded-full px-6">
+          <Button asChild size="sm" className="rounded-full px-6 bg-brand-teal hover:bg-brand-teal/90 text-white">
             <Link to="/schedule">
               Schedule a Session
             </Link>
@@ -102,7 +102,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button asChild size="lg" className="w-full rounded-full mt-4">
+          <Button asChild size="lg" className="w-full rounded-full mt-4 bg-brand-teal hover:bg-brand-teal/90 text-white">
             <Link to="/schedule">
               Schedule a Session
             </Link>

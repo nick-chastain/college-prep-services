@@ -34,12 +34,12 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 mt-4"
           >
-            <Button asChild size="lg" className="rounded-full px-8">
+            <Button asChild size="lg" className="rounded-full px-8 bg-brand-teal hover:bg-brand-teal/90 text-white">
               <Link to="/contact">
                 Contact Us Today
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full px-8">
+            <Button asChild variant="outline" size="lg" className="rounded-full px-8 border-brand-teal text-brand-teal hover:bg-brand-teal/10">
               <Link to="/services" className="flex items-center gap-2">
                 Our Services <ChevronRight size={16} />
               </Link>
