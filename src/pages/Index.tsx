@@ -1,4 +1,3 @@
-
 import { Book, BookOpen, GraduationCap, DollarSign, TrendingUp, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -174,8 +173,8 @@ const Index = () => {
                 className="rounded-2xl overflow-hidden shadow-lg"
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
-                  alt="Students studying together" 
+                  src={`${import.meta.env.BASE_URL}our-philosophy.png`}
+                  alt="Our Philosophy" 
                   className="w-full h-full object-cover"
                 />
               </motion.div>

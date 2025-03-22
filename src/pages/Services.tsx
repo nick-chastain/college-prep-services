@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -133,12 +132,13 @@ const Services = () => {
                     className={index % 2 === 1 ? 'lg:col-start-1' : ''}
                   >
                     <img 
-                      src={`https://images.unsplash.com/photo-${index === 0 
-                        ? '1523240795612-9a054b0db644'
-                        : index === 1 
-                          ? '1455894127589-22f75500213a'
-                          : '1517245386807-bb43f82c33c4'
-                      }?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80`} 
+                      src={
+                        index === 0 
+                          ? `${import.meta.env.BASE_URL}college-app-help.png`
+                          : index === 1 
+                            ? `${import.meta.env.BASE_URL}sat-prep.png`
+                            : `https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80`
+                      } 
                       alt={service.title} 
                       className="rounded-2xl shadow-lg w-full h-full object-cover"
                     />
