@@ -21,10 +21,6 @@ const About = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
-              <p className="text-lg text-brand-dark/80 leading-relaxed mb-8">
-                At College Prep Services, we're passionate about helping students navigate the complex journey 
-                to college admission success.
-              </p>
             </motion.div>
           </div>
         </section>
@@ -56,14 +52,22 @@ const About = () => {
               >
                 <h2 className="text-3xl md:text-4xl font-bold">Why We Do It</h2>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  We understand the challenges that students and families face in preparing for college. 
-                  The college admissions process has become increasingly competitive and complex, 
-                  and standardized tests like the SAT play a significant role in college acceptance decisions.
+                  There aren't many times more overwhelming for a family than those last couple years of high school. 
+                  Suddenly, you and your student are consumed by a mountain of decisions that will shape their future 
+                  and by the pressure that they perform well on all their exams–and all the while your student is expected 
+                  to keep up with school, extracurriculars, and sleep.
                 </p>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  Many students struggle to navigate this process on their own, leading to stress, anxiety, 
-                  and potentially missed opportunities. We founded College Prep Services to provide the guidance, 
-                  support, and expertise that students need to achieve their college admission goals.
+                  Emotions can run thin during this time. Fights explode because an application didn't get submitted on time. 
+                  Tears fall because a test score wasn't quite high enough for a dream school. Frustration sets in after 
+                  three hours sitting in front of a computer looking at a list of essay prompts and, frozen by indecision, 
+                  there's not a single word on the page.
+                </p>
+                <p className="text-lg text-brand-dark/80 leading-relaxed">
+                  At College Prep Services, we're dedicated to lifting that stress from your shoulders by navigating you 
+                  and your student through the college prep process. Our team's motive is making SAT test prep and college 
+                  applications feel a lot more manageable, enabling your home to be more peaceful and your student to be 
+                  more successful.
                 </p>
               </motion.div>
             </div>
@@ -81,9 +85,6 @@ const About = () => {
               className="text-center mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Values</h2>
-              <p className="text-lg text-brand-dark/70 max-w-2xl mx-auto">
-                These core principles guide everything we do at College Prep Services.
-              </p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -96,8 +97,8 @@ const About = () => {
               >
                 <h3 className="text-2xl font-bold text-brand-teal mb-4">Relationships</h3>
                 <p className="text-brand-dark/80">
-                  We believe in building strong, trusting relationships with our students and families. 
-                  We take the time to understand each student's unique background, goals, strengths, and challenges.
+                  Relationships are the cornerstone of what we do. By building strong relationships, 
+                  we create an environment where students are encouraged to excel and stay committed to their goals.
                 </p>
               </motion.div>
 
@@ -110,8 +111,8 @@ const About = () => {
               >
                 <h3 className="text-2xl font-bold text-brand-teal mb-4">Service</h3>
                 <p className="text-brand-dark/80">
-                  Our goal is to serve our students and families by providing exceptional guidance, 
-                  support, and resources. We're committed to being responsive, accessible, and adaptable to meet their needs.
+                  Service is what motivates us. We are dedicated to exceeding your expectations by providing 
+                  high-quality, personalized support that meets each student's unique needs.
                 </p>
               </motion.div>
 
@@ -124,8 +125,8 @@ const About = () => {
               >
                 <h3 className="text-2xl font-bold text-brand-teal mb-4">Excellence</h3>
                 <p className="text-brand-dark/80">
-                  We strive for excellence in everything we do. Our tutors are highly qualified experts who stay 
-                  current with the latest developments in standardized testing and college admissions.
+                  Excellence is our North Star. We strive to provide excellent guidance and tutoring 
+                  so that your student may achieve exceptional results.
                 </p>
               </motion.div>
             </div>
@@ -146,17 +147,26 @@ const About = () => {
                 <h2 className="text-3xl md:text-4xl font-bold">Meet Our Founder</h2>
                 <h3 className="text-2xl md:text-3xl font-semibold text-brand-teal">Nick Chastain</h3>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  Nick Chastain founded College Prep Services with a vision to transform the college preparation 
-                  experience for students and families. With over a decade of experience in education and standardized 
-                  test preparation, Nick recognized the need for a more personalized, holistic approach to college admissions guidance.
+                  Nick graduated with a Chemical and Biological Engineering degree from Colorado State University 
+                  where he was the 2023 Colorado Engineering Council Silver Medal Award Winner, the highest award 
+                  a graduating engineer can achieve in the state of Colorado. He is now living in Denver working 
+                  for Merrick & Company as a Process Engineer for their Nuclear Services and Technology team.
                 </p>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  Nick holds a degree in Education from the University of Colorado and has helped hundreds of students 
-                  achieve significant improvements in their SAT scores and gain admission to their dream colleges.
+                  College Prep Services was a fledgling idea when Nick began to help friends and family with their 
+                  college application essays. As an avid reader his whole life, Nick loves a good story. He now 
+                  loves helping others tell their own story and seeing their excitement when those stories lead 
+                  to acceptances at dream schools and programs.
                 </p>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  His philosophy is centered on building confidence, developing personalized strategies, and empowering 
-                  students to take ownership of their educational journey.
+                  Tutoring was a similar story: Nick started by tutoring his cousin in school and for the SAT. 
+                  He saw her confidence grow as she began to understand the material; she was adamant that Nick 
+                  should tutor more people. From that little nudge, College Prep Services was born–Nick is so 
+                  excited to help more students reach their potential and get into their dream schools!
+                </p>
+                <p className="text-lg text-brand-dark/80 leading-relaxed">
+                  In his free time, Nick has kept up playing lacrosse, loves to dive into all sorts of books, 
+                  and enjoys Colorado's beautiful outdoors by hiking, mountain biking, and skiing.
                 </p>
               </motion.div>
 
@@ -186,9 +196,9 @@ const About = () => {
               viewport={{ once: true, amount: 0.3 }}
               className="max-w-3xl mx-auto"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Get Started?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Get In Touch</h2>
               <p className="text-xl text-white/90 mb-8">
-                Schedule a consultation to discuss how we can help you achieve your college admission goals.
+                Have questions? Weʼre here to help! Reach out and start your journey to success today.
               </p>
               <Button asChild size="lg" variant="secondary" className="rounded-full px-8">
                 <Link to="/schedule">
