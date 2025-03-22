@@ -46,7 +46,7 @@ const Navbar = () => {
       <div className="container flex items-center justify-between mx-auto">
         <Link to="/" className="text-2xl font-bold text-brand-teal transition-opacity duration-300 hover:opacity-80 flex items-center gap-2">
           <img 
-            src="/CPS-Logo.png" 
+            src={`${import.meta.env.BASE_URL}CPS-Logo.png`}
             alt="College Prep Services Logo" 
             className="h-10"
           />

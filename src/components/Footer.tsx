@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="text-2xl font-bold text-brand-teal hover:opacity-90 transition-opacity flex items-center gap-2">
               <img 
-                src="/CPS-Logo.png" 
+                src={`${import.meta.env.BASE_URL}CPS-Logo.png`} 
                 alt="College Prep Services Logo" 
                 className="h-8"
               />

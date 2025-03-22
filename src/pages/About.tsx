@@ -176,7 +176,7 @@ const About = () => {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <img 
-                  src="/Professional-Headshot-1024x1024.png" 
+                  src={`${import.meta.env.BASE_URL}Professional-Headshot-1024x1024.png`} 
                   alt="Nick Chastain, Founder" 
                   className="rounded-2xl shadow-lg"
                 />
