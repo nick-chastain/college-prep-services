@@ -1,3 +1,4 @@
+
 import { Book, BookOpen, GraduationCap, DollarSign, TrendingUp, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -51,17 +52,20 @@ const Index = () => {
     {
       value: "$286,536",
       label: "Tuition Costs Saved",
-      icon: <DollarSign size={24} />
+      icon: <DollarSign size={24} />,
+      expandedInfo: "Our College Application experts help our students get scholarships—scholarships that help make higher education dreams a reality."
     },
     {
       value: "+205",
       label: "Average SAT Score Improvement",
-      icon: <TrendingUp size={24} />
+      icon: <TrendingUp size={24} />,
+      expandedInfo: "Our proven SAT test strategies lead to higher scores—that means getting into better colleges and opening up scholarship opportunities."
     },
     {
       value: "+11%",
       label: "Average Test Score Increase",
-      icon: <BarChart3 size={24} />
+      icon: <BarChart3 size={24} />,
+      expandedInfo: "Our tutors are equipped with science-backed strategies to help your student learn faster and lead them to mastery in difficult subject areas."
     }
   ];
 
