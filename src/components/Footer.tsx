@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
 
@@ -11,7 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo and About */}
           <div className="space-y-4">
-            <Link to="/" className="text-2xl font-bold text-brand-teal hover:opacity-90 transition-opacity">
+            <Link to="/" className="text-2xl font-bold text-brand-teal hover:opacity-90 transition-opacity flex items-center gap-2">
+              <img 
+                src="/CPS-Logo.png" 
+                alt="College Prep Services Logo" 
+                className="h-8"
+              />
               College Prep Services
             </Link>
             <p className="text-brand-dark/80 mt-4 leading-relaxed">

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -46,42 +45,11 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between mx-auto">
         <Link to="/" className="text-2xl font-bold text-brand-teal transition-opacity duration-300 hover:opacity-80 flex items-center gap-2">
-          {/* Updated graduation cap icon */}
-          <svg 
-            width="36" 
-            height="36" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="rgb(87, 155, 142)"
-            xmlns="http://www.w3.org/2000/svg"
-            className="stroke-brand-teal"
-          >
-            <path 
-              d="M12 2L2 7L12 12L22 7L12 2Z" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              fill="rgb(87, 155, 142)"
-            />
-            <path 
-              d="M2 17L12 22L22 17" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            />
-            <path 
-              d="M2 12V17" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            />
-            <path 
-              d="M16 8.5V15C16 15 14.5 17 12 17C9.5 17 8 15 8 15V8.5" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img 
+            src="/CPS-Logo.png" 
+            alt="College Prep Services Logo" 
+            className="h-10"
+          />
           College Prep Services
         </Link>
         

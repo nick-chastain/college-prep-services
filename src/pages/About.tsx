@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -177,7 +176,7 @@ const About = () => {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
+                  src="/Professional-Headshot-1024x1024.png" 
                   alt="Nick Chastain, Founder" 
                   className="rounded-2xl shadow-lg"
                 />
