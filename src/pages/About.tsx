@@ -144,6 +144,7 @@ const About = () => {
                 className="space-y-6"
               >
                 <h2 className="text-3xl md:text-4xl font-bold">Meet Our Founder</h2>
+                <h3 className="text-2xl md:text-3xl font-semibold text-brand-teal">Nick Chastain</h3>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
                   Nick Chastain founded College Prep Services with a vision to transform the college preparation 
                   experience for students and families. With over a decade of experience in education and standardized 
