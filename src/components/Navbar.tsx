@@ -55,6 +55,11 @@ const Navbar = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
+          <Button asChild size="sm" className="rounded-full px-6 bg-brand-teal hover:bg-brand-teal/90 text-white">
+            <Link to="/schedule">
+              Schedule a Session
+            </Link>
+          </Button>
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -69,11 +74,6 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button asChild size="sm" className="rounded-full px-6 bg-brand-teal hover:bg-brand-teal/90 text-white">
-            <Link to="/schedule">
-              Schedule a Session
-            </Link>
-          </Button>
         </nav>
 
         {/* Mobile Menu Button */}

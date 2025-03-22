@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -90,12 +90,6 @@ const Footer = () => {
                 <Mail size={20} className="text-brand-teal flex-shrink-0" />
                 <a href="mailto:info@collegeprepservicesllc.com" className="text-brand-dark/80 hover:text-brand-teal transition-colors">
                   info@collegeprepservicesllc.com
-                </a>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone size={20} className="text-brand-teal flex-shrink-0" />
-                <a href="tel:+13035551234" className="text-brand-dark/80 hover:text-brand-teal transition-colors">
-                  (303) 555-1234
                 </a>
               </li>
             </ul>
