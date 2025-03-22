@@ -1,4 +1,3 @@
-
 import { Book, BookOpen, GraduationCap, DollarSign, TrendingUp, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -211,7 +210,7 @@ const Index = () => {
                     Contact Us Today
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-full px-8 text-white border-white hover:bg-white hover:text-brand-teal">
+                <Button asChild size="lg" className="rounded-full px-8 bg-brand-teal text-white hover:bg-brand-teal/90 border border-white">
                   <Link to="/schedule">
                     Schedule a Session
                   </Link>

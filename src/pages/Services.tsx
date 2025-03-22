@@ -257,7 +257,7 @@ const Services = () => {
                     Contact Us
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-full px-8 text-white border-white hover:bg-white hover:text-brand-teal">
+                <Button asChild size="lg" className="rounded-full px-8 bg-brand-teal text-white hover:bg-brand-teal/90 border border-white">
                   <Link to="/schedule">
                     Schedule a Session
                   </Link>
