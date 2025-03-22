@@ -41,23 +41,42 @@ const Navbar = () => {
     <header 
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 px-4 lg:px-10",
-        scrolled ? "py-4 bg-white/90 shadow-sm backdrop-blur-md" : "py-6 bg-transparent"
+        scrolled || isMenuOpen ? "py-4 bg-white shadow-sm" : "py-6 bg-transparent"
       )}
     >
       <div className="container flex items-center justify-between mx-auto">
         <Link to="/" className="text-2xl font-bold text-brand-teal transition-opacity duration-300 hover:opacity-80 flex items-center gap-2">
-          {/* Bolder graduation cap icon */}
+          {/* Updated graduation cap icon */}
           <svg 
-            width="32" 
-            height="32" 
+            width="36" 
+            height="36" 
             viewBox="0 0 24 24" 
-            fill="rgb(87, 155, 142)" 
+            fill="none" 
+            stroke="rgb(87, 155, 142)"
             xmlns="http://www.w3.org/2000/svg"
             className="stroke-brand-teal"
           >
             <path 
-              d="M22 10L12 5L2 10L12 15L22 10ZM22 10V16M6 12.5V16.5C6 17.88 8.69 19 12 19C15.31 19 18 17.88 18 16.5V12.5" 
-              stroke="rgb(87, 155, 142)" 
+              d="M12 2L2 7L12 12L22 7L12 2Z" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              fill="rgb(87, 155, 142)"
+            />
+            <path 
+              d="M2 17L12 22L22 17" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M2 12V17" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M16 8.5V15C16 15 14.5 17 12 17C9.5 17 8 15 8 15V8.5" 
               strokeWidth="2.5" 
               strokeLinecap="round" 
               strokeLinejoin="round"
@@ -99,7 +118,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - fixed the transparency issue */}
       <div
         className={cn(
           "fixed inset-0 bg-white z-40 pt-24 px-6 pb-8 md:hidden transition-transform duration-300 ease-in-out",

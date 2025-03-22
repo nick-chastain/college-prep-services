@@ -71,16 +71,6 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
-              <li>
-                <a href="#" className="text-brand-dark/80 hover:text-brand-teal transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-brand-dark/80 hover:text-brand-teal transition-colors">
-                  Terms of Service
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -108,29 +98,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-gray-200 mt-12 pt-8 flex justify-center">
           <p className="text-brand-dark/60 text-sm">
             © {currentYear} College Prep Services LLC. All rights reserved.
           </p>
-          <div className="mt-4 md:mt-0">
-            <ul className="flex space-x-6">
-              <li>
-                <a href="#" className="text-sm text-brand-dark/60 hover:text-brand-teal transition-colors">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-brand-dark/60 hover:text-brand-teal transition-colors">
-                  Terms
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-brand-dark/60 hover:text-brand-teal transition-colors">
-                  Cookies
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </footer>
