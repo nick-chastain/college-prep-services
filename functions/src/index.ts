@@ -6,7 +6,6 @@ import { google, calendar_v3 } from 'googleapis';
 import { JWT } from 'google-auth-library';
 import { Request, Response } from 'express';
 import * as nodemailer from 'nodemailer';
-import { toZonedTime } from 'date-fns-tz';
 
 // Initialize Firebase Admin
 admin.initializeApp();
@@ -293,16 +292,28 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
     const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:00`;
     const dateTimeString = `${yearMonthDay}T${timeString}`;
     
-    // Create a date in Mountain Time
-    const startDateTime = toZonedTime(dateTimeString, TIMEZONE);
+    console.log('Created datetime string:', dateTimeString, 'with period:', period);
+    
+    // Explicitly create a date object with the parsed hours and minutes to avoid timezone issues
+    const appointmentDate = new Date(dateObj);
+    appointmentDate.setHours(hour, minute, 0, 0);
+    
+    console.log('Direct appointment date:', appointmentDate.toISOString());
+    console.log('Hour value used:', hour, 'Period:', period);
+    
+    // Use the explicit date object instead of string parsing with toZonedTime
+    const startDateTime = appointmentDate;
     
     // Calculate end time
     const duration = SERVICE_DURATION_MINUTES[serviceType as keyof typeof SERVICE_DURATION_MINUTES];
     const endDateTime = new Date(startDateTime.getTime() + duration * 60000);
     
     console.log('Appointment time details:', { 
-      dateTimeString,
+      originalTimeSlot: timeSlot,
+      parsedHour: hour,
+      parsedPeriod: period,
       startDateTime: startDateTime.toISOString(),
+      startDateTimeLocal: startDateTime.toString(),
       endDateTime: endDateTime.toISOString(),
       timezone: TIMEZONE
     });
