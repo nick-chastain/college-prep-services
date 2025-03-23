@@ -81,12 +81,12 @@ const CalendarScheduler = () => {
     
     // Debug information
     if (date) {
-      console.log('API URL:', import.meta.env.VITE_CALENDAR_API_URL || 'http://localhost:5001/college-prep-services/us-central1/calendarApi');
+      console.log('API URL:', import.meta.env.VITE_CALENDAR_API_URL || 'https://us-central1-nick-website-test.cloudfunctions.net/calendarApi');
       console.log('Selected date:', date);
       
       // Test API directly
       const formattedDate = date.toISOString().split('T')[0];
-      const apiUrl = `${import.meta.env.VITE_CALENDAR_API_URL || 'http://localhost:5001/college-prep-services/us-central1/calendarApi'}/api/available-slots?date=${formattedDate}`;
+      const apiUrl = `${import.meta.env.VITE_CALENDAR_API_URL || 'https://us-central1-nick-website-test.cloudfunctions.net/calendarApi'}/api/available-slots?date=${formattedDate}`;
       
       console.log('Testing API URL:', apiUrl);
       

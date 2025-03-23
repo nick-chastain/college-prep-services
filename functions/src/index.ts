@@ -28,7 +28,11 @@ const BUSINESS_HOURS = {
 
 // Create Express app
 const app = express();
-app.use(cors({ origin: true }));
+app.use(cors({ 
+  origin: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Function to set up and get an authorized Google Calendar API client
 async function getCalendarClient(): Promise<calendar_v3.Calendar> {

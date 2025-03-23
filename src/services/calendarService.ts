@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Set the base URL for the calendar API
 // In production, this should be the deployed Firebase Function URL
-const API_BASE_URL = import.meta.env.VITE_CALENDAR_API_URL || 'http://localhost:5001/college-prep-services/us-central1/calendarApi';
+const API_BASE_URL = import.meta.env.VITE_CALENDAR_API_URL || 'https://us-central1-nick-website-test.cloudfunctions.net/calendarApi';
 
 /**
  * Fetch available time slots for a specific date
