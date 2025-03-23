@@ -296,10 +296,10 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
     
     // Explicitly create a date object with the parsed hours and minutes to avoid timezone issues
     const appointmentDate = new Date(dateObj);
-    appointmentDate.setHours(hour, minute, 0, 0);
+    appointmentDate.setHours(hour + 6, minute, 0, 0);
     
     console.log('Direct appointment date:', appointmentDate.toISOString());
-    console.log('Hour value used:', hour, 'Period:', period);
+    console.log('Hour value used:', hour + 6, 'Period:', period);
     
     // Use the explicit date object instead of string parsing with toZonedTime
     const startDateTime = appointmentDate;
@@ -311,6 +311,7 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
     console.log('Appointment time details:', { 
       originalTimeSlot: timeSlot,
       parsedHour: hour,
+      correctedHour: hour + 6,
       parsedPeriod: period,
       startDateTime: startDateTime.toISOString(),
       startDateTimeLocal: startDateTime.toString(),
