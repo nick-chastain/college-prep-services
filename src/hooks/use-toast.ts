@@ -194,9 +194,4 @@ function useToast() {
   }
 }
 
-// Re-export the hook to add any custom logic if needed
-export const useToast = () => {
-  return useToastOriginal();
-};
-
 export { useToast, toast }
