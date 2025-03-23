@@ -6,14 +6,15 @@ import { google, calendar_v3 } from 'googleapis';
 import { JWT } from 'google-auth-library';
 import { Request, Response } from 'express';
 import * as nodemailer from 'nodemailer';
+import { toZonedTime } from 'date-fns-tz';
 
 // Initialize Firebase Admin
 admin.initializeApp();
 
 // Constants
 const CALENDAR_ID = functions.config().calendar?.calendar_id || '';
-const TIMEZONE = 'America/New_York';
-const ADMIN_EMAIL = functions.config().calendar?.client_email || 'calendar-service-account@nick-website-test.iam.gserviceaccount.com';
+const TIMEZONE = 'America/Denver'; // Mountain Time
+const ADMIN_EMAIL = functions.config().email?.user || 'malcolm.kobe@gmail.com'; // Use your email instead of service account
 
 // Service duration in minutes
 const SERVICE_DURATION_MINUTES = {
@@ -284,26 +285,26 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
       hour = 0;
     }
     
-    // Create start and end times
-    // Parse the date in the correct timezone
-    const dateString = new Date(date).toISOString().split('T')[0]; // YYYY-MM-DD
-    const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:00`; // HH:MM:SS
+    // Parse the date in Mountain Time zone
+    const dateObj = new Date(date);
+    const yearMonthDay = dateObj.toISOString().split('T')[0]; // YYYY-MM-DD
     
-    // Create an ISO-8601 formatted date-time string
-    const startTimeStr = `${dateString}T${timeString}`; 
+    // Create the full date-time string in the format "YYYY-MM-DDThh:mm:ss"
+    const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:00`;
+    const dateTimeString = `${yearMonthDay}T${timeString}`;
     
-    // Format as an ISO string with time zone information
-    const startDateTime = new Date(startTimeStr);
+    // Create a date in Mountain Time
+    const startDateTime = toZonedTime(dateTimeString, TIMEZONE);
     
-    // Calculate end time by adding duration minutes
+    // Calculate end time
     const duration = SERVICE_DURATION_MINUTES[serviceType as keyof typeof SERVICE_DURATION_MINUTES];
     const endDateTime = new Date(startDateTime.getTime() + duration * 60000);
     
     console.log('Appointment time details:', { 
+      dateTimeString,
       startDateTime: startDateTime.toISOString(),
       endDateTime: endDateTime.toISOString(),
-      duration,
-      timeZone: TIMEZONE
+      timezone: TIMEZONE
     });
     
     // Log calendar config
