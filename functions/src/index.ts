@@ -36,17 +36,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Email transport configuration - using Google service account
+// Email transport configuration - using SMTP instead of OAuth2 for simplicity
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    type: 'OAuth2',
     user: functions.config().email?.user || ADMIN_EMAIL,
-    serviceClient: functions.config().calendar?.client_email,
-    privateKey: functions.config().calendar?.private_key?.replace(/\\n/g, '\n')
-      .replace(/"-----BEGIN/g, '-----BEGIN')
-      .replace(/KEY-----"/g, 'KEY-----')
-      .trim(),
+    pass: functions.config().email?.password || ''
   }
 });
 
@@ -290,17 +285,25 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
     }
     
     // Create start and end times
-    const startTime = new Date(date);
-    startTime.setHours(hour, minute, 0, 0);
+    // Parse the date in the correct timezone
+    const dateString = new Date(date).toISOString().split('T')[0]; // YYYY-MM-DD
+    const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:00`; // HH:MM:SS
     
-    const endTime = new Date(startTime);
+    // Create an ISO-8601 formatted date-time string
+    const startTimeStr = `${dateString}T${timeString}`; 
+    
+    // Format as an ISO string with time zone information
+    const startDateTime = new Date(startTimeStr);
+    
+    // Calculate end time by adding duration minutes
     const duration = SERVICE_DURATION_MINUTES[serviceType as keyof typeof SERVICE_DURATION_MINUTES];
-    endTime.setMinutes(endTime.getMinutes() + duration);
+    const endDateTime = new Date(startDateTime.getTime() + duration * 60000);
     
     console.log('Appointment time details:', { 
-      startTime: startTime.toISOString(), 
-      endTime: endTime.toISOString(),
-      duration
+      startDateTime: startDateTime.toISOString(),
+      endDateTime: endDateTime.toISOString(),
+      duration,
+      timeZone: TIMEZONE
     });
     
     // Log calendar config
@@ -313,7 +316,7 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
     // Get calendar client
     const calendar = await getCalendarClient();
     
-    // Create event
+    // Create event with explicit timezone setting
     const event = {
       summary: `${serviceType} - ${studentName}`,
       description: `
@@ -324,11 +327,11 @@ app.post('/api/create-appointment', async (req: Request, res: Response) => {
         ${notes ? `Notes: ${notes}` : ''}
       `,
       start: {
-        dateTime: startTime.toISOString(),
+        dateTime: startDateTime.toISOString(),
         timeZone: TIMEZONE,
       },
       end: {
-        dateTime: endTime.toISOString(),
+        dateTime: endDateTime.toISOString(),
         timeZone: TIMEZONE,
       },
       // Conditionally add attendees if enabled in config
