@@ -78,6 +78,35 @@ const CalendarScheduler = () => {
 
   const handleDateSelect = (date: Date | undefined) => {
     setDate(date);
+    
+    // Debug information
+    if (date) {
+      console.log('API URL:', import.meta.env.VITE_CALENDAR_API_URL || 'http://localhost:5001/college-prep-services/us-central1/calendarApi');
+      console.log('Selected date:', date);
+      
+      // Test API directly
+      const formattedDate = date.toISOString().split('T')[0];
+      const apiUrl = `${import.meta.env.VITE_CALENDAR_API_URL || 'http://localhost:5001/college-prep-services/us-central1/calendarApi'}/api/available-slots?date=${formattedDate}`;
+      
+      console.log('Testing API URL:', apiUrl);
+      
+      // Fetch directly to see detailed error
+      fetch(apiUrl)
+        .then(response => {
+          console.log('API Response Status:', response.status);
+          if (!response.ok) {
+            console.error('API Error:', response.statusText);
+            throw new Error(`API returned ${response.status}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('API Response Data:', data);
+        })
+        .catch(error => {
+          console.error('API Fetch Error Details:', error);
+        });
+    }
   };
 
   const handleTimeSelect = (time: string) => {
