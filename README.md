@@ -4,6 +4,20 @@
 
 **URL**: https://lovable.dev/projects/2279bd50-14ee-4aff-8564-ef6e40003bba
 
+## Calendar Integration
+
+This project includes Google Calendar integration for appointment scheduling:
+
+- Allows users to book appointments through the website
+- Manages available time slots based on Google Calendar
+- Automatically adds bookings to your calendar
+- Uses Firebase Functions for the backend API
+
+To set up:
+1. Make sure the .env file has the correct VITE_CALENDAR_API_URL
+2. Verify the Firebase Functions are deployed
+3. Ensure the Google Calendar service account has access to your calendar
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
