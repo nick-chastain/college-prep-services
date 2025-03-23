@@ -5,6 +5,12 @@ import type {
   ToastProps,
 } from "@/components/ui/toast"
 
+import { Toast } from "@/components/ui/toast";
+import {
+  useToast as useToastOriginal,
+  ToasterToast
+} from "@/components/ui/use-toast";
+
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
 
@@ -187,5 +193,10 @@ function useToast() {
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   }
 }
+
+// Re-export the hook to add any custom logic if needed
+export const useToast = () => {
+  return useToastOriginal();
+};
 
 export { useToast, toast }

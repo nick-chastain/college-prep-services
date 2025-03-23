@@ -1,0 +1,37 @@
+# PowerShell script to set Firebase private key
+$privateKey = @"
+-----BEGIN PRIVATE KEY-----
+MIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQCsQL0pkOi00JlN
+rcb3+t2bdmNh1/tbcZiRYrNGQ5/Q+mo5tE2k/IquSFm8sUJ0og0+uh0omXeW8CPm
+qchJShRUow2w/tlEWyOn85dUIiMbVImd2sjreFTv00LxCLovOu1NlD5UsNhdVlqJ
+Bf0MXmZxPCwmhLuAfLd3QR3upqsY6B/paLKUb9zJgtoEuiucx+/cam+08VQgrrkF
++mVOFL0dZO++XPghbxS58mAH5+XJzEyOa5+W6QqvzWS2V0EgVvNWWRJihkivMMZq
+m3XGAcdlfJ35FwQ+VjAWoaM25jRD7g+Xtk5fZN6WHxuhRTN3PE7gRTbisTHnJszt
+nd/S9aXFAgMBAAECgf9S6Q9AZGMsbFgItmOdMeojsWaWeQn1iCnLJkUkVBMnEdNk
+1p1sdz67FoniLMV6s6IeOejrhWTR0FMFs8+z6PRSAbgHJGr97cQC9ueK0HHcmWKH
+mKsdHc5u9rLspypMPC1SKiUruw/4FibTItXjOqlp16kvxLPRCDbVE4LGlTnFwoBA
+GlyZxQicD/0MNJWDpFBBqBBgZE67O8jSeLMp6hP4uUE02KHzvfm+Q/8Rr2v+ErLs
+KBnFoX35S/3CVsbXA7OzfW2VZgmaoWvd48of6U4TvP9nzG3BqaXw29xBdE0UJl/Y
+ar0pDIAj0hgLzUZV5VPO9U4orAeJWTD7O1P3FF0CgYEA2CwK6/4Dt58oLfQfB1qW
+3/UhCOwAkh7U5t6quEzRywejkIQp2F7d7ZDBxy+9tOZxcxbS0ruDYMM2UFD8/ILs
+64vlNwk6rQGCXjR7DF9d+EoBQerJBDLahrZYgi5jZGpXsXndycwX0yAxlFabi39i
+KswywpOrXnYcJ+modTNuQG8CgYEAy/01Qu7KoBthgkj9UhXc7t+7O1GSxTa+M+nW
+jiNNwSc/3PLkR+IbHSZhYiIAix9/u3eqhtSRb6afdmLR4iMKuPklGnIf1+wBObP6
+znprvvj/PnDVnbVr0PsMXqj7ibjLcUk3Gh0XRXh+Al/isv5sRQKgpTJpCqP25W1D
+85AjrwsCgYBqOIIJYiDbenZY1krk5yuZ0q6v3p+NLV86LpG+y+iOlitWGMsjCcKN
+OIMvaBMUr+NxRPbFG+S7iFDI+HLHdWILgAtalsthNYuk1K7d7oKTPXIOvNqXmJFu
+fm1RUo/+SI7co2BLB2FxmbEjDceSrT5Ef2A15trnqKu/JP5k0KfNOwKBgFOWm4ek
+4CUBc1B25k8HpHPB/DAPeiwUBZayQHgYIVl/4tyAL2kBTwj/3DHhKwXXT3kbTSZY
+3ou45GkXj1ex8kff2ANhNok9LTde9+w6IAKud7E3fWFVoSuOZAA6EHDb54mxbcHm
+n82Y1VHVxsiAFw+kRv3KjV6N17Mltg2NSAIHAoGBALdhywLbp//GNnVdfYXi6eqp
+6Xrur3oqOuVP13Mv2mqIyV1nQtRUd/h+ZfxmpV30mtlsjAhIn2CNTVUDh0uRRdLQ
+5jegg1OyV4fMN3pgenDrc8hCQi6hawBZszUkIEO7mXS4PSGk3dfn1po9mDCgyKWS
+T/IIG3Ua+EdeKlzSAfjZ
+-----END PRIVATE KEY-----
+"@
+
+# Replace newlines with \n for Firebase
+$privateKey = $privateKey -replace "`r`n", "\n"
+
+# Set the Firebase config
+firebase functions:config:set calendar.private_key="$privateKey" 
