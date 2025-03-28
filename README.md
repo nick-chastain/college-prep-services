@@ -1,83 +1,46 @@
-# Welcome to your Lovable project
+# College Prep Services
 
-## Project info
+A modern web application for college preparation services, built with React, TypeScript, and Vite.
 
-**URL**: https://lovable.dev/projects/2279bd50-14ee-4aff-8564-ef6e40003bba
+## Features
 
-## Calendar Integration
+- Modern UI with Tailwind CSS and shadcn/ui
+- Responsive design
+- Smooth animations with Framer Motion
+- Type-safe development with TypeScript
+- Fast development with Vite
 
-This project includes Google Calendar integration for appointment scheduling:
+## Development
 
-- Allows users to book appointments through the website
-- Manages available time slots based on Google Calendar
-- Automatically adds bookings to your calendar
-- Uses Firebase Functions for the backend API
+1. Install dependencies:
+```bash
+npm install
+```
 
-To set up:
-1. Make sure the .env file has the correct VITE_CALENDAR_API_URL
-2. Verify the Firebase Functions are deployed
-3. Ensure the Google Calendar service account has access to your calendar
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/2279bd50-14ee-4aff-8564-ef6e40003bba) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+3. Build for production:
+```bash
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4. Preview production build:
+```bash
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## Deployment on Railway
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Create a new project on Railway
+2. Connect your GitHub repository
+3. Railway will automatically detect the Dockerfile and deploy your application
+4. Set the following environment variables in Railway:
+   - `PORT`: The port number for the application (default: 3000)
+   - Any other environment variables required by your application
 
-## What technologies are used for this project?
+## License
 
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2279bd50-14ee-4aff-8564-ef6e40003bba) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project is private and confidential. All rights reserved.
