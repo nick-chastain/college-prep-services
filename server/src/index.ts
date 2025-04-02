@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 
 // Resolve paths for production and development
 const DIST_PATH = process.env.NODE_ENV === 'production' 
-  ? path.join(__dirname, '../..') 
+  ? path.join(__dirname, 'public') 
   : path.join(__dirname, '../../dist');
 
 const app = express();
@@ -21,6 +21,11 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Log environment and paths
+console.log('Environment:', process.env.NODE_ENV || 'development');
+console.log('Current directory:', __dirname);
+console.log('Static files path:', DIST_PATH);
 
 // Serve static files from the React app
 app.use(express.static(DIST_PATH));
@@ -30,9 +35,17 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
+// Log incoming requests
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
+
 // Handle SPA routing - this should be after all API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(DIST_PATH, 'index.html'));
+  const indexPath = path.join(DIST_PATH, 'index.html');
+  console.log('Serving index.html from:', indexPath);
+  res.sendFile(indexPath);
 });
 
 const PORT = process.env.PORT || 3000;

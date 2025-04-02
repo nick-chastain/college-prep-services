@@ -38,7 +38,10 @@ COPY --from=backend-build /app/server/package*.json ./
 # Install production dependencies
 RUN npm install --production
 
+# Set environment variables
 ENV PORT=3000
+ENV NODE_ENV=production
+
 EXPOSE 3000
 
 CMD ["node", "dist/index.js"] 
