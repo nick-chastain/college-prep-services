@@ -165,11 +165,23 @@ const downloadFile: RequestHandler<{ appointmentId: string; fileName: string }> 
 const cancelAppointment: RequestHandler<{ appointmentId: string }> = (req, res, next) => {
   const { appointmentId } = req.params;
 
+  type AppointmentWithClient = {
+    id: string;
+    clientId: string;
+    serviceType: string;
+    startTime: Date;
+    client: {
+      email: string;
+      firstName: string;
+      lastName: string;
+    };
+  };
+
   prisma.appointment.findUnique({
     where: { id: appointmentId },
     include: { client: true },
   })
-    .then((appointment: Prisma.AppointmentGetPayload<{ include: { client: true } }> | null) => {
+    .then((appointment: AppointmentWithClient | null) => {
       if (!appointment) {
         res.status(404).json({ error: 'Appointment not found' });
         return;
