@@ -4,6 +4,7 @@ import { EmailService } from '../services/emailService';
 import { FileService } from '../services/fileService';
 import multer from 'multer';
 import { prisma } from '../lib/prisma';
+import type { Appointment } from '@prisma/client';
 
 const router = express.Router();
 const calendarService = CalendarService.getInstance();
@@ -168,7 +169,7 @@ const cancelAppointment: RequestHandler<{ appointmentId: string }> = (req, res, 
     where: { id: appointmentId },
     include: { client: true },
   })
-    .then((appointment) => {
+    .then((appointment: Appointment & { client: { email: string; firstName: string; lastName: string } } | null) => {
       if (!appointment) {
         res.status(404).json({ error: 'Appointment not found' });
         return;
