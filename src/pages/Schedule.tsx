@@ -81,11 +81,7 @@ const Schedule = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="text-brand-teal mr-2">•</span>
-                  <span>Initial consultations are approximately 60 minutes.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-brand-teal mr-2">•</span>
-                  <span>For technical issues with scheduling, please contact our support team.</span>
+                  <span>For technical issues with scheduling, please contact info@collegeprepservicesllc.com</span>
                 </li>
               </ul>
             </div>
