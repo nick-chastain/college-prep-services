@@ -4,22 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { getAvailableTimeSlots, createAppointment, AppointmentData } from '@/services/calendarService';
+import { getAvailableTimeSlots } from '@/services/calendarService';
 
 interface SatPrepSchedulerProps {
-  formData?: {
-    studentName: string;
-    parentName: string;
-    email: string;
-    phone: string;
-    serviceType: string;
-    notes: string;
-  };
   onBack: () => void;
-  onComplete: (date: Date, time: string) => void;
+  onComplete: (selectedDate: Date, selectedTime: string) => void;
 }
 
-const SatPrepScheduler: React.FC<SatPrepSchedulerProps> = ({ formData, onBack, onComplete }) => {
+const SatPrepScheduler: React.FC<SatPrepSchedulerProps> = ({ onBack, onComplete }) => {
   const { toast } = useToast();
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -68,12 +60,13 @@ const SatPrepScheduler: React.FC<SatPrepSchedulerProps> = ({ formData, onBack, o
     setSelectedTime(time);
   };
 
-  const handleSubmit = () => {    
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!date || !selectedTime) {
       toast({
         title: "Error",
-        description: "Please select a date and time",
-        variant: "destructive"
+        description: "Please select both a date and time.",
+        variant: "destructive",
       });
       return;
     }

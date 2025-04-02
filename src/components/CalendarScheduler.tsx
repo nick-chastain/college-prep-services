@@ -63,6 +63,7 @@ const CalendarScheduler = () => {
       
       // Format date as YYYY-MM-DD
       const formattedDate = date.toISOString().split('T')[0];
+      console.log(`Loading time slots for date: ${formattedDate}`);
       
       getAvailableTimeSlots(date, formData.serviceType)
         .then(slots => {

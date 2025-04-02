@@ -2,15 +2,14 @@
 
 import { format } from 'date-fns';
 
-// Set the base URL for the calendar API
-// In production, this should be the deployed Firebase Function URL
-const API_BASE_URL = import.meta.env.VITE_CALENDAR_API_URL || 'https://us-central1-nick-website-test.cloudfunctions.net/calendarApi';
-
 /**
  * Fetch available time slots for a specific date
  */
 export const getAvailableTimeSlots = async (date: Date, serviceType: string = 'private-tutoring'): Promise<string[]> => {
   try {
+    // Format the date for logging purposes
+    console.log(`Fetching slots for ${format(date, 'yyyy-MM-dd')}, service: ${serviceType}`);
+
     // For now, return mock time slots
     // TODO: Replace with actual API call once backend is ready
     const mockTimeSlots = [
@@ -22,19 +21,6 @@ export const getAvailableTimeSlots = async (date: Date, serviceType: string = 'p
     await new Promise(resolve => setTimeout(resolve, 500));
 
     return mockTimeSlots;
-
-    // Uncomment below and remove mock data when API is ready
-    /*
-    const formattedDate = format(date, 'yyyy-MM-dd');
-    const response = await fetch(`${API_BASE_URL}/api/available-slots?date=${formattedDate}&serviceType=${serviceType}`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch time slots: ${response.statusText}`);
-    }
-    
-    const data = await response.json();
-    return data.timeSlots || [];
-    */
   } catch (error) {
     console.error('Error fetching time slots:', error);
     throw error;
@@ -59,11 +45,14 @@ export interface AppointmentData {
 
 /**
  * Creates a new appointment
- * @param data The appointment data
+ * @param appointmentData The appointment data
  * @returns Promise that resolves to the created appointment response
  */
-export const createAppointment = async (data: AppointmentData): Promise<{ eventId: string }> => {
+export const createAppointment = async (appointmentData: AppointmentData): Promise<{ eventId: string }> => {
   try {
+    // Log the appointment request
+    console.log(`Creating appointment for ${appointmentData.studentName} on ${format(appointmentData.date, 'yyyy-MM-dd')} at ${appointmentData.timeSlot}`);
+
     // For now, return mock response
     // TODO: Replace with actual API call once backend is ready
     await new Promise(resolve => setTimeout(resolve, 1000));
