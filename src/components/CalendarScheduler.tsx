@@ -4,17 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { CalendarClock, Clock, ArrowRight, Loader2 } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { getAvailableTimeSlots, createAppointment, AppointmentData } from '@/services/calendarService';
-
-const SERVICE_TYPES = [
-  'SAT Prep', 'College Application Help', 'Individual Tutoring'
-];
 
 type Step = 'date-time' | 'form' | 'confirmation';
 
@@ -48,8 +42,6 @@ const CalendarScheduler = () => {
     serviceType: string;
     eventId: string;
   } | null>(null);
-
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (date) {

@@ -110,7 +110,7 @@ const Index = () => {
               viewport={{ once: true, amount: 0.3 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
-              {services.map((service, index) => (
+              {services.map((service) => (
                 <motion.div key={service.title} variants={item}>
                   <ServiceCard {...service} />
                 </motion.div>
@@ -130,7 +130,7 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <StatisticCard key={stat.label} {...stat} />
               ))}
             </div>

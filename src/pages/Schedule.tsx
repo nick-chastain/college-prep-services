@@ -1,14 +1,10 @@
-
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CalendarScheduler from '@/components/CalendarScheduler';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Check, Mail } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const Schedule = () => {
-  const isMobile = useIsMobile();
-
   const steps = [
     {
       icon: <Calendar className="w-6 h-6" />,
