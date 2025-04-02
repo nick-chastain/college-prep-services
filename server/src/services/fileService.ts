@@ -4,7 +4,7 @@ import path from 'path';
 import { Multer } from 'multer';
 import { prisma } from '../lib/prisma';
 import { randomBytes } from 'crypto';
-import { ApplicationMaterial, Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
 const writeFileAsync = promisify(fs.writeFile);
 const unlinkAsync = promisify(fs.unlink);
@@ -52,14 +52,15 @@ export class FileService {
 
     try {
       await writeFileAsync(filePath, file.buffer);
-      const data: Prisma.ApplicationMaterialUncheckedCreateInput = {
-        appointmentId,
-        fileName: file.originalname,
-        fileSize: file.size,
-        fileType: file.mimetype,
-        filePath
-      };
-      await prisma.applicationMaterial.create({ data });
+      await prisma.applicationMaterial.create({
+        data: {
+          appointmentId,
+          fileName: file.originalname,
+          fileSize: file.size,
+          fileType: file.mimetype,
+          filePath
+        }
+      });
     } catch (error) {
       throw new Error(`Failed to save file: ${error}`);
     }

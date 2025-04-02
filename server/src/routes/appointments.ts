@@ -168,7 +168,7 @@ const cancelAppointment: RequestHandler<{ appointmentId: string }> = (req, res, 
     where: { id: appointmentId },
     include: { client: true },
   })
-    .then(appointment => {
+    .then((appointment) => {
       if (!appointment) {
         res.status(404).json({ error: 'Appointment not found' });
         return;
@@ -191,7 +191,7 @@ const cancelAppointment: RequestHandler<{ appointmentId: string }> = (req, res, 
           res.json({ message: 'Appointment cancelled successfully' });
         });
     })
-    .catch(error => {
+    .catch((error: unknown) => {
       console.error('Error cancelling appointment:', error);
       res.status(500).json({ error: 'Failed to cancel appointment' });
     });
