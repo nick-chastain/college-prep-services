@@ -92,7 +92,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-lg shadow-brand-teal/10 hover:shadow-2xl hover:shadow-brand-teal/30 transition-all duration-300 border-2 border-[rgb(87,155,142)]"
               >
                 <h3 className="text-2xl font-bold text-brand-teal mb-4">Relationships</h3>
                 <p className="text-brand-dark/80">
@@ -106,7 +106,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-lg shadow-brand-teal/10 hover:shadow-2xl hover:shadow-brand-teal/30 transition-all duration-300 border-2 border-[rgb(87,155,142)]"
               >
                 <h3 className="text-2xl font-bold text-brand-teal mb-4">Service</h3>
                 <p className="text-brand-dark/80">
@@ -120,7 +120,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-lg shadow-brand-teal/10 hover:shadow-2xl hover:shadow-brand-teal/30 transition-all duration-300 border-2 border-[rgb(87,155,142)]"
               >
                 <h3 className="text-2xl font-bold text-brand-teal mb-4">Excellence</h3>
                 <p className="text-brand-dark/80">
@@ -186,7 +186,7 @@ const About = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-brand-teal text-white">
+        <section className="py-20 bg-[rgb(87,155,142)]">
           <div className="container px-6 mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -197,9 +197,9 @@ const About = () => {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Get In Touch</h2>
               <p className="text-xl text-white/90 mb-8">
-                Have questions? Weʼre here to help! Reach out and start your journey to success today.
+                Have questions? We're here to help! Reach out and start your journey to success today.
               </p>
-              <Button asChild size="lg" variant="secondary" className="rounded-full px-8">
+              <Button asChild size="lg" className="rounded-full px-8 bg-white text-[rgb(87,155,142)] hover:bg-white/90">
                 <Link to="/schedule">
                   Schedule a Session
                 </Link>

@@ -33,11 +33,11 @@ const Schedule = () => {
       <Navbar />
       
       <main className="flex-grow pt-24">
-        <section className="py-12 bg-brand-light">
+        <section className="py-12 bg-[rgb(87,155,142)]">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">Schedule Your Session</h1>
-              <p className="text-lg text-brand-dark/70">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">Schedule Your Session</h1>
+              <p className="text-lg text-white/90">
                 Take the first step towards your academic success by scheduling a personalized session with our expert tutors and college advisors.
               </p>
             </div>

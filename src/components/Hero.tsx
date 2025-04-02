@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -34,12 +33,21 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 mt-4"
           >
-            <Button asChild size="lg" className="rounded-full px-8 bg-brand-teal hover:bg-brand-teal/90 text-white">
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full px-8 shadow-lg bg-[rgb(87,155,142)] text-white hover:bg-[rgb(87,155,142)]/90"
+            >
               <Link to="/contact">
                 Contact Us Today
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full px-8 border-brand-teal text-brand-teal hover:bg-brand-teal/10">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="rounded-full px-8 shadow-lg border-2 border-brand-teal text-brand-teal hover:bg-brand-teal/10"
+            >
               <Link to="/services" className="flex items-center gap-2">
                 Our Services <ChevronRight size={16} />
               </Link>

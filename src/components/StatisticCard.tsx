@@ -1,4 +1,3 @@
-
 import { cn } from '@/lib/utils';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
@@ -23,10 +22,10 @@ const StatisticCard = ({ value, label, icon, className, expandedInfo }: Statisti
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={cn(
-        "bg-white rounded-2xl p-8 shadow-sm border border-gray-100",
-        "flex flex-col items-center text-center transition-all",
-        "hover-lift cursor-pointer",
-        isHovered && "shadow-lg",
+        "bg-white rounded-2xl p-6 md:p-8 shadow-lg shadow-brand-teal/10 border-2 border-[rgb(87,155,142)]",
+        "flex flex-col items-center text-center transition-all duration-300",
+        "hover-lift cursor-pointer min-h-[250px]",
+        isHovered && "shadow-2xl shadow-brand-teal/30",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -51,17 +50,17 @@ const StatisticCard = ({ value, label, icon, className, expandedInfo }: Statisti
         {expandedInfo && (
           <div 
             className={cn(
-              "absolute inset-0 flex flex-col justify-center transition-all duration-300",
+              "absolute inset-0 flex flex-col justify-center transition-all duration-300 px-4",
               isHovered ? "opacity-100" : "opacity-0"
             )}
           >
             <div className="text-2xl md:text-3xl font-bold text-brand-teal mb-2 font-heading">
               {value}
             </div>
-            <div className="text-sm text-brand-dark/70 uppercase tracking-wider font-medium mb-3">
+            <div className="text-sm text-brand-dark/70 uppercase tracking-wider font-medium mb-4">
               {label}
             </div>
-            <p className="text-brand-dark/80 text-sm">
+            <p className="text-brand-dark/80 text-sm leading-relaxed">
               {expandedInfo}
             </p>
           </div>

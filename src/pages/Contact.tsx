@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -77,7 +76,7 @@ const Contact = () => {
         </section>
 
         {/* Contact Form & Email */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-[rgb(87,155,142)]">
           <div className="container px-6 mx-auto">
             <div className="max-w-3xl mx-auto">
               <motion.div
@@ -86,7 +85,7 @@ const Contact = () => {
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-8">
+                <div className="bg-white rounded-2xl p-8 shadow-lg border border-white/10 mb-8">
                   <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -180,7 +179,7 @@ const Contact = () => {
 
                     <Button 
                       type="submit" 
-                      className="w-full rounded-full bg-brand-teal hover:bg-brand-teal/90 text-white"
+                      className="w-full rounded-full bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white"
                       disabled={loading}
                     >
                       {loading ? "Sending..." : "Send Message"}
@@ -197,10 +196,15 @@ const Contact = () => {
                 className="text-center"
               >
                 <div className="flex items-center justify-center mb-2">
-                  <Mail className="text-brand-teal mr-2" />
-                  <h3 className="font-medium">Email</h3>
+                  <Mail className="text-white mr-2" />
+                  <h3 className="font-medium text-white">Email</h3>
                 </div>
-                <p className="text-brand-dark/70">info@collegeprepservicesllc.com</p>
+                <a 
+                  href="mailto:info@collegeprepservicesllc.com" 
+                  className="text-white/90 hover:text-white transition-colors"
+                >
+                  info@collegeprepservicesllc.com
+                </a>
               </motion.div>
             </div>
           </div>

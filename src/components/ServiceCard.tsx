@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -17,7 +16,7 @@ const ServiceCard = ({ title, description, icon, link, className }: ServiceCardP
     <div 
       className={cn(
         "relative bg-white rounded-2xl p-8 hover-lift transition-all duration-300",
-        "border border-gray-100 shadow-sm overflow-hidden",
+        "border-2 border-[rgb(87,155,142)] shadow-lg shadow-brand-teal/10 hover:shadow-2xl hover:shadow-brand-teal/30",
         className
       )}
     >
@@ -33,7 +32,7 @@ const ServiceCard = ({ title, description, icon, link, className }: ServiceCardP
         {description}
       </p>
       
-      <Button asChild variant="outline" className="mt-4 rounded-full border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white">
+      <Button asChild variant="outline" className="mt-4 rounded-full border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
         <Link to={link}>
           Learn More
         </Link>

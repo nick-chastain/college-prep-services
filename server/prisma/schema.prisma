@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Appointment {
+  id                 String    @id @default(uuid())
+  clientId           String
+  client             Client    @relation(fields: [clientId], references: [id])
+  serviceType        String    // "SAT_PREP" | "PRIVATE_TUTORING" | "COLLEGE_APP_HELP"
+  startTime          DateTime
+  endTime            DateTime
+  course             String?   // For Private Tutoring
+  status             String    @default("SCHEDULED") // "SCHEDULED" | "COMPLETED" | "CANCELLED"
+  googleCalendarId   String?   // ID of the event in Google Calendar
+  environment        String    @default("development")
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  applicationMaterials ApplicationMaterial[]
+
+  @@index([clientId])
+  @@index([serviceType])
+  @@index([startTime])
+  @@index([environment])
+}
+
+model Client {
+  id            String    @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String
+  phone         String
+  appointments  Appointment[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ApplicationMaterial {
+  id            String    @id @default(uuid())
+  appointmentId String
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  fileName      String
+  fileSize      Int
+  fileType      String
+  uploadedAt    DateTime  @default(now())
+}
+
+model EmailLog {
+  id            String    @id @default(uuid())
+  to            String
+  subject       String
+  type          String    // "CONFIRMATION" | "REMINDER" | "CANCELLATION"
+  status        String    // "SENT" | "FAILED"
+  error         String?
+  sentAt        DateTime  @default(now())
+}

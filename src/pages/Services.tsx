@@ -224,8 +224,10 @@ const Services = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-br from-brand-teal/90 to-brand-teal relative">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')] bg-cover bg-center opacity-10" />
+        <section className="py-24 relative">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')] bg-cover bg-center opacity-40" />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/40 to-brand-teal/40" />
           
           <div className="container px-6 mx-auto relative z-10">
             <div className="max-w-3xl mx-auto text-center">
@@ -234,12 +236,12 @@ const Services = () => {
                 Contact us today to learn more about our services or to schedule your first session.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" variant="secondary" className="rounded-full px-8">
+                <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
                   <Link to="/contact">
                     Contact Us
                   </Link>
                 </Button>
-                <Button asChild size="lg" className="rounded-full px-8 bg-brand-teal text-white hover:bg-brand-teal/90 border border-white">
+                <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] text-white hover:bg-[rgb(87,155,142)]/90 border border-white">
                   <Link to="/schedule">
                     Schedule a Session
                   </Link>

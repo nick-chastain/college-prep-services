@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { getAvailableTimeSlots, createAppointment, AppointmentData } from '@/services/calendarService';
+import SatPrepScheduler from './SatPrepScheduler';
 
 type Step = 'date-time' | 'form' | 'confirmation';
 
@@ -18,12 +19,14 @@ interface FormData {
   email: string;
   phone: string;
   serviceType: string;
+  course?: string;  // For Private Tutoring
+  applicationMaterials?: FileList | null;  // For College App Help
   notes: string;
 }
 
 const CalendarScheduler = () => {
   const { toast } = useToast();
-  const [step, setStep] = useState<Step>('date-time');
+  const [step, setStep] = useState<Step>('form');
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -33,8 +36,9 @@ const CalendarScheduler = () => {
     parentName: '',
     email: '',
     phone: '',
-    serviceType: 'consultation',
-    notes: ''
+    serviceType: 'private-tutoring',
+    notes: '',
+    applicationMaterials: null
   });
   const [bookingConfirmation, setBookingConfirmation] = useState<{
     date: string;
@@ -43,62 +47,56 @@ const CalendarScheduler = () => {
     eventId: string;
   } | null>(null);
 
+  const today = new Date();
+  const bufferDate = new Date();
+  bufferDate.setDate(today.getDate() + 3);
+
+  const disabledDays = [
+    { before: bufferDate },
+    { dayOfWeek: [0, 6] }  // 0 is Sunday, 6 is Saturday
+  ];
+
   useEffect(() => {
     if (date) {
       setLoading(true);
       setSelectedTime(null);
       
-      getAvailableTimeSlots(date)
+      // Format date as YYYY-MM-DD
+      const formattedDate = date.toISOString().split('T')[0];
+      
+      getAvailableTimeSlots(date, formData.serviceType)
         .then(slots => {
-          setTimeSlots(slots);
-          setLoading(false);
+          if (Array.isArray(slots)) {
+            setTimeSlots(slots);
+          } else {
+            console.error('Invalid time slots format:', slots);
+            setTimeSlots([]);
+            toast({
+              title: "Error",
+              description: "Failed to load time slots. Please try again.",
+              variant: "destructive"
+            });
+          }
         })
         .catch(error => {
           console.error('Error fetching time slots:', error);
+          setTimeSlots([]);
           toast({
             title: "Error",
             description: "Failed to fetch available time slots. Please try again.",
             variant: "destructive"
           });
-          setTimeSlots([]);
+        })
+        .finally(() => {
           setLoading(false);
         });
     } else {
       setTimeSlots([]);
     }
-  }, [date, toast]);
+  }, [date, formData.serviceType, toast]);
 
   const handleDateSelect = (date: Date | undefined) => {
     setDate(date);
-    
-    // Debug information
-    if (date) {
-      console.log('API URL:', import.meta.env.VITE_CALENDAR_API_URL || 'https://us-central1-nick-website-test.cloudfunctions.net/calendarApi');
-      console.log('Selected date:', date);
-      
-      // Test API directly
-      const formattedDate = date.toISOString().split('T')[0];
-      const apiUrl = `${import.meta.env.VITE_CALENDAR_API_URL || 'https://us-central1-nick-website-test.cloudfunctions.net/calendarApi'}/api/available-slots?date=${formattedDate}`;
-      
-      console.log('Testing API URL:', apiUrl);
-      
-      // Fetch directly to see detailed error
-      fetch(apiUrl)
-        .then(response => {
-          console.log('API Response Status:', response.status);
-          if (!response.ok) {
-            console.error('API Error:', response.statusText);
-            throw new Error(`API returned ${response.status}: ${response.statusText}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('API Response Data:', data);
-        })
-        .catch(error => {
-          console.error('API Fetch Error Details:', error);
-        });
-    }
   };
 
   const handleTimeSelect = (time: string) => {
@@ -114,11 +112,53 @@ const CalendarScheduler = () => {
       });
       return;
     }
-    setStep('form');
+
+    setLoading(true);
+    const appointmentData: AppointmentData = {
+      date: date,
+      timeSlot: selectedTime,
+      studentName: formData.studentName,
+      parentName: formData.parentName || undefined,
+      email: formData.email,
+      phone: formData.phone,
+      serviceType: formData.serviceType,
+      course: formData.course,
+      notes: formData.notes || undefined,
+      applicationMaterials: formData.applicationMaterials || undefined
+    };
+    
+    createAppointment(appointmentData)
+      .then(response => {
+        setBookingConfirmation({
+          date: new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+          time: selectedTime,
+          serviceType: formData.serviceType === 'private-tutoring' 
+            ? 'Private Tutoring' 
+            : 'College Application Help',
+          eventId: response.eventId
+        });
+        setStep('confirmation');
+        toast({
+          title: "Appointment Scheduled",
+          description: "Your appointment has been successfully scheduled!",
+          variant: "default"
+        });
+      })
+      .catch(error => {
+        console.error('Error creating appointment:', error);
+        toast({
+          title: "Booking Failed",
+          description: "Failed to book your appointment. Please try again.",
+          variant: "destructive"
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  const handleBackToDateTime = () => {
-    setStep('date-time');
+  const handleBackToForm = () => {
+    setStep('form');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -130,23 +170,24 @@ const CalendarScheduler = () => {
     setFormData(prev => ({ ...prev, serviceType: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!date || !selectedTime) {
-      toast({
-        title: "Error",
-        description: "Please select a date and time",
-        variant: "destructive"
-      });
-      return;
-    }
     
     // Simple validation
     if (!formData.studentName || !formData.email || !formData.phone) {
       toast({
         title: "Missing Information",
         description: "Please fill out all required fields",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Course validation for Private Tutoring
+    if (formData.serviceType === 'private-tutoring' && !formData.course) {
+      toast({
+        title: "Missing Information",
+        description: "Please select a course for private tutoring",
         variant: "destructive"
       });
       return;
@@ -162,50 +203,18 @@ const CalendarScheduler = () => {
       });
       return;
     }
-    
-    setLoading(true);
-    
-    try {
-      const appointmentData: AppointmentData = {
-        date: date,
-        timeSlot: selectedTime,
-        studentName: formData.studentName,
-        parentName: formData.parentName || undefined,
-        email: formData.email,
-        phone: formData.phone,
-        serviceType: formData.serviceType,
-        notes: formData.notes || undefined
-      };
-      
-      const response = await createAppointment(appointmentData);
-      
-      setBookingConfirmation({
-        date: new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
-        time: selectedTime,
-        serviceType: formData.serviceType === 'consultation' 
-          ? 'Initial Consultation' 
-          : formData.serviceType === 'sat-prep' 
-            ? 'SAT Preparation' 
-            : 'College Application Help',
-        eventId: response.eventId
-      });
-      
-      setStep('confirmation');
-      
-      toast({
-        title: "Appointment Scheduled",
-        description: "Your appointment has been successfully scheduled!",
-        variant: "default"
-      });
-    } catch (error) {
-      console.error('Error creating appointment:', error);
-      toast({
-        title: "Booking Failed",
-        description: "Failed to book your appointment. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setLoading(false);
+
+    // Route to appropriate calendar based on service type
+    if (formData.serviceType === 'sat-prep') {
+      setStep('date-time');
+    } else {
+      setStep('date-time');
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFormData(prev => ({ ...prev, applicationMaterials: e.target.files }));
     }
   };
 
@@ -218,8 +227,9 @@ const CalendarScheduler = () => {
       parentName: '',
       email: '',
       phone: '',
-      serviceType: 'consultation',
-      notes: ''
+      serviceType: 'private-tutoring',
+      notes: '',
+      applicationMaterials: null
     });
     setBookingConfirmation(null);
   };
@@ -298,11 +308,11 @@ const CalendarScheduler = () => {
         <CardHeader>
           <CardTitle className="text-xl">Book Your Appointment</CardTitle>
           <CardDescription>
-            {date?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at {selectedTime}
+            Fill out your information to proceed to scheduling
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleFormSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="studentName">Full Name *</Label>
               <Input 
@@ -354,12 +364,67 @@ const CalendarScheduler = () => {
                   <SelectValue placeholder="Select service type" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="consultation">Initial Consultation (30 min)</SelectItem>
-                  <SelectItem value="sat-prep">SAT Preparation (60 min)</SelectItem>
-                  <SelectItem value="college-app-help">College Application Help (60 min)</SelectItem>
+                  <SelectItem value="private-tutoring">Private Tutoring</SelectItem>
+                  <SelectItem value="college-app-help">College Application Help</SelectItem>
+                  <SelectItem value="sat-prep">SAT Preparation</SelectItem>
                 </SelectContent>
               </Select>
             </div>
+
+            {formData.serviceType === 'private-tutoring' && (
+              <div className="space-y-2">
+                <Label htmlFor="course">Course *</Label>
+                <Select onValueChange={(value) => setFormData(prev => ({ ...prev, course: value }))} value={formData.course}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a course" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="algebra-1">Algebra I</SelectItem>
+                    <SelectItem value="algebra-2">Algebra II</SelectItem>
+                    <SelectItem value="geometry">Geometry</SelectItem>
+                    <SelectItem value="trigonometry">Trigonometry</SelectItem>
+                    <SelectItem value="precalculus">Precalculus</SelectItem>
+                    <SelectItem value="ap-calc-ab">AP Calculus AB (I)</SelectItem>
+                    <SelectItem value="ap-calc-bc">AP Calculus BC (II)</SelectItem>
+                    <SelectItem value="physics">Physics (Honors or Standard)</SelectItem>
+                    <SelectItem value="ap-physics-1-2">AP Physics 1 and 2 (Algebra Based)</SelectItem>
+                    <SelectItem value="ap-physics-c">AP Physics C (Calculus Based)</SelectItem>
+                    <SelectItem value="chemistry">Chemistry (Honors or Standard)</SelectItem>
+                    <SelectItem value="ap-chemistry">AP Chemistry</SelectItem>
+                    <SelectItem value="organic-chemistry">Organic Chemistry</SelectItem>
+                    <SelectItem value="biology">Biology (Honors or Standard)</SelectItem>
+                    <SelectItem value="ap-biology">AP Biology</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {formData.serviceType === 'college-app-help' && (
+              <div className="space-y-2">
+                <Label htmlFor="applicationMaterials">Current Application Materials (Optional)</Label>
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-brand-teal transition-colors">
+                  <div className="space-y-1 text-center">
+                    <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <div className="flex text-sm text-gray-600">
+                      <label htmlFor="applicationMaterials" className="relative cursor-pointer rounded-md font-medium text-brand-teal hover:text-brand-teal/90">
+                        <span>Upload files</span>
+                        <Input 
+                          id="applicationMaterials" 
+                          type="file"
+                          onChange={handleFileChange}
+                          multiple
+                          className="sr-only"
+                        />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 10MB each</p>
+                  </div>
+                </div>
+              </div>
+            )}
             
             <div className="space-y-2">
               <Label htmlFor="notes">Additional Notes</Label>
@@ -373,17 +438,95 @@ const CalendarScheduler = () => {
             </div>
           </form>
         </CardContent>
+        <CardFooter className="flex justify-end">
+          <Button onClick={handleFormSubmit}>
+            Continue to Scheduling
+          </Button>
+        </CardFooter>
+      </Card>
+    );
+  }
+
+  if (step === 'date-time') {
+    if (formData.serviceType === 'sat-prep') {
+      return (
+        <SatPrepScheduler 
+          onBack={handleBackToForm}
+          onComplete={(selectedDate, selectedTime) => {
+            setLoading(true);
+            const appointmentData: AppointmentData = {
+              date: selectedDate,
+              timeSlot: selectedTime,
+              studentName: formData.studentName,
+              parentName: formData.parentName || undefined,
+              email: formData.email,
+              phone: formData.phone,
+              serviceType: 'sat-prep',
+              notes: formData.notes || undefined
+            };
+            
+            createAppointment(appointmentData)
+              .then(response => {
+                setBookingConfirmation({
+                  date: new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+                  time: selectedTime,
+                  serviceType: 'SAT Preparation',
+                  eventId: response.eventId
+                });
+                setStep('confirmation');
+                toast({
+                  title: "SAT Prep Session Scheduled",
+                  description: "Your SAT preparation session has been successfully scheduled!",
+                  variant: "default"
+                });
+              })
+              .catch(error => {
+                console.error('Error creating appointment:', error);
+                toast({
+                  title: "Booking Failed",
+                  description: "Failed to book your session. Please try again.",
+                  variant: "destructive"
+                });
+              })
+              .finally(() => {
+                setLoading(false);
+              });
+          }}
+        />
+      );
+    }
+
+    return (
+      <Card className="w-full max-w-3xl mx-auto">
+        <CardHeader>
+          <CardTitle className="text-xl">Select Your Appointment Time</CardTitle>
+          <CardDescription>Choose a date and time that works for you</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold mb-4">Select a Date & Time</h3>
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={handleDateSelect}
+                disabled={disabledDays}
+                className="rounded-md border shadow"
+              />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-medium mb-3">Available Time Slots</h3>
+              {renderTimeSlots()}
+            </div>
+          </div>
+        </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline" onClick={handleBackToDateTime}>Back</Button>
-          <Button onClick={handleSubmit} disabled={loading}>
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Processing...
-              </>
-            ) : (
-              "Schedule Appointment"
-            )}
+          <Button variant="outline" onClick={handleBackToForm}>Back</Button>
+          <Button 
+            onClick={handleNextStep} 
+            disabled={!date || !selectedTime}
+          >
+            Continue
           </Button>
         </CardFooter>
       </Card>
@@ -399,17 +542,12 @@ const CalendarScheduler = () => {
       <CardContent className="space-y-6">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="flex-1">
+            <h3 className="text-lg font-semibold mb-4">Select a Date & Time</h3>
             <Calendar
               mode="single"
               selected={date}
               onSelect={handleDateSelect}
-              disabled={(date) => {
-                // Disable dates in the past and weekends
-                const now = new Date();
-                now.setHours(0, 0, 0, 0);
-                const day = date.getDay();
-                return date < now || day === 0 || day === 6;
-              }}
+              disabled={disabledDays}
               className="rounded-md border shadow"
             />
           </div>

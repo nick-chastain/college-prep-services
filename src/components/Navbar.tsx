@@ -53,7 +53,7 @@ const Navbar = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Button asChild size="sm" className="rounded-full px-6 bg-brand-teal hover:bg-brand-teal/90 text-white">
+          <Button asChild size="sm" className="rounded-full px-6 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
             <Link to="/schedule">
               Schedule a Session
             </Link>
@@ -106,7 +106,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button asChild size="lg" className="w-full rounded-full mt-4 bg-brand-teal hover:bg-brand-teal/90 text-white">
+          <Button asChild size="lg" className="w-full rounded-full mt-4 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
             <Link to="/schedule">
               Schedule a Session
             </Link>
