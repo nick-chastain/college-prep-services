@@ -7,10 +7,19 @@
     <meta name="description" content="College Prep Services" />
     <meta name="author" content="College Prep Services" />
     
-    <!-- Updated favicon with proper sizes -->
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <!-- Updated favicon with proper sizes and padding -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" media="(min-resolution: 2dppx)" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" media="(min-resolution: 1dppx)" />
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    
+    <!-- Favicon styling -->
+    <style>
+      link[rel="icon"] {
+        padding: 2px;
+        box-sizing: content-box;
+        transform: scale(0.9);
+      }
+    </style>
     
     <meta property="og:title" content="College Prep Services" />
     <meta property="og:description" content="College Prep Services" />
