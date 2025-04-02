@@ -96,8 +96,8 @@ export const createAppointment = async (data: AppointmentData): Promise<{ eventI
       throw new Error(`Failed to create appointment: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    return { eventId: data.eventId };
+    const responseData = await response.json();
+    return { eventId: responseData.eventId };
     */
   } catch (error) {
     console.error('Error creating appointment:', error);
