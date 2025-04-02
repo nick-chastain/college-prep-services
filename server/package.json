@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "copy-frontend": "powershell Copy-Item -Path '../dist/*' -Destination './dist/public' -Recurse -Force",
+    "copy-frontend": "mkdir -p ./dist/public && cp -r ../dist/* ./dist/public/",
     "postbuild": "npm run copy-frontend"
   },
   "keywords": [],
