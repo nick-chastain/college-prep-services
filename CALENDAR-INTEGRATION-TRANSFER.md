@@ -35,28 +35,34 @@ You need to share your Google Calendar with our service account:
 
 ### 2. Admin Email for Notifications
 
-You need to provide us with the email address that will:
-1. Receive notifications about new appointments
-2. Send confirmation emails to clients
+The calendar system has been configured with a dedicated email account for handling appointment notifications:
 
-Please provide us with:
-- Your preferred email address for notifications
-- An app password for this email account (if using Gmail)
+- **Sending Address**: calendar@collegeprepservicesllc.com
+  - This address will appear as the sender for all client booking confirmations
+  - Uses HostGator SMTP server (smtp.hostgator.com) for reliable delivery
 
-We will configure the system with this information.
+- **Admin Notifications**: nick.chastain@collegeprepservicesllc.com
+  - All appointment notifications will be sent to this address
+  - Includes details about new bookings, cancellations, and changes
 
-#### Setting Up Gmail App Password (if using Gmail)
+#### Email Flow
 
-If you're using Gmail, you'll need to create an App Password:
-1. Go to your Google Account at https://myaccount.google.com/
-2. Select "Security" from the left navigation menu
-3. Under "Signing in to Google," select "2-Step Verification" (you must have this enabled)
-4. Scroll to the bottom and select "App passwords"
-5. Click "Select app" and choose "Other (Custom name)"
-6. Enter a name like "College Prep Calendar"
-7. Click "Generate"
-8. Google will display your 16-character app password - copy this password
-9. Share this generated password with us securely (not your regular Gmail password)
+1. When a client books an appointment:
+   - They receive a confirmation email from calendar@collegeprepservicesllc.com
+   - An admin notification is sent to nick.chastain@collegeprepservicesllc.com
+
+2. The email notifications include:
+   - Appointment date and time
+   - Client's contact information
+   - Service type selected
+   - Any notes provided during booking
+
+#### Troubleshooting Email Delivery
+
+If emails are not being received:
+- Check spam/junk folders
+- Ensure nick.chastain@collegeprepservicesllc.com is added to your safe senders list
+- Contact us if you need to update either email address
 
 ### 3. System Deployment
 
