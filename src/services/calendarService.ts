@@ -11,9 +11,6 @@ const API_BASE_URL = import.meta.env.VITE_CALENDAR_API_URL || 'https://us-centra
  */
 export const getAvailableTimeSlots = async (date: Date, serviceType: string = 'private-tutoring'): Promise<string[]> => {
   try {
-    // Format date as YYYY-MM-DD
-    const formattedDate = format(date, 'yyyy-MM-dd');
-    
     // For now, return mock time slots
     // TODO: Replace with actual API call once backend is ready
     const mockTimeSlots = [
@@ -28,6 +25,7 @@ export const getAvailableTimeSlots = async (date: Date, serviceType: string = 'p
 
     // Uncomment below and remove mock data when API is ready
     /*
+    const formattedDate = format(date, 'yyyy-MM-dd');
     const response = await fetch(`${API_BASE_URL}/api/available-slots?date=${formattedDate}&serviceType=${serviceType}`);
     
     if (!response.ok) {
@@ -61,10 +59,10 @@ export interface AppointmentData {
 
 /**
  * Creates a new appointment
- * @param appointmentData The appointment data
+ * @param data The appointment data
  * @returns Promise that resolves to the created appointment response
  */
-export const createAppointment = async (appointmentData: AppointmentData): Promise<{ eventId: string }> => {
+export const createAppointment = async (data: AppointmentData): Promise<{ eventId: string }> => {
   try {
     // For now, return mock response
     // TODO: Replace with actual API call once backend is ready
@@ -76,16 +74,16 @@ export const createAppointment = async (appointmentData: AppointmentData): Promi
     const formData = new FormData();
     
     // Add application materials if present
-    if (appointmentData.applicationMaterials && appointmentData.applicationMaterials.length > 0) {
-      for (let i = 0; i < appointmentData.applicationMaterials.length; i++) {
-        formData.append('applicationMaterials', appointmentData.applicationMaterials[i]);
+    if (data.applicationMaterials && data.applicationMaterials.length > 0) {
+      for (let i = 0; i < data.applicationMaterials.length; i++) {
+        formData.append('applicationMaterials', data.applicationMaterials[i]);
       }
     }
     
     // Add other appointment data
     formData.append('appointmentData', JSON.stringify({
-      ...appointmentData,
-      date: format(appointmentData.date, 'yyyy-MM-dd'),
+      ...data,
+      date: format(data.date, 'yyyy-MM-dd'),
       applicationMaterials: undefined // Remove the files from JSON
     }));
 
