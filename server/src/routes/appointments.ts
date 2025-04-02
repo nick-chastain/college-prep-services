@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, RequestHandler } from 'express';
 import { CalendarService } from '../services/calendarService';
 import { EmailService } from '../services/emailService';
 import { FileService } from '../services/fileService';
@@ -28,151 +28,181 @@ const upload = multer({
   },
 });
 
+interface AppointmentRequest {
+  clientName: string;
+  clientEmail: string;
+  date: string;
+  serviceType: string;
+  notes?: string;
+}
+
 // Get available time slots
-router.get('/available-slots', async (req, res) => {
-  try {
-    const { date, serviceType } = req.query;
-    
-    if (!date || typeof date !== 'string') {
-      return res.status(400).json({ error: 'Date is required' });
-    }
-
-    const slots = await calendarService.getAvailableTimeSlots(
-      new Date(date),
-      serviceType as string
-    );
-
-    res.json(slots);
-  } catch (error) {
-    console.error('Error getting available slots:', error);
-    res.status(500).json({ error: 'Failed to get available slots' });
+const getAvailableSlots: RequestHandler = (req, res, next) => {
+  const { date, serviceType } = req.query;
+  
+  if (!date || typeof date !== 'string') {
+    res.status(400).json({ error: 'Date is required' });
+    return;
   }
-});
+
+  calendarService.getAvailableTimeSlots(
+    new Date(date),
+    serviceType as string || 'private-tutoring'
+  )
+    .then(slots => {
+      res.json(slots);
+    })
+    .catch(error => {
+      console.error('Error getting available slots:', error);
+      res.status(500).json({ error: 'Failed to get available slots' });
+    });
+};
 
 // Create a new appointment
-router.post('/', async (req, res) => {
-  try {
-    const {
-      clientName,
-      clientEmail,
-      date,
-      serviceType,
-      notes,
-    } = req.body;
+const createAppointment: RequestHandler<{}, any, AppointmentRequest> = (req, res, next) => {
+  const {
+    clientName,
+    clientEmail,
+    date,
+    serviceType,
+    notes,
+  } = req.body;
 
-    // Validate required fields
-    if (!clientName || !clientEmail || !date || !serviceType) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    // Create appointment in Google Calendar and database
-    const appointment = await calendarService.createAppointment({
-      clientName,
-      clientEmail,
-      date: new Date(date),
-      serviceType,
-      notes,
-    });
-
-    // Send confirmation emails
-    await emailService.sendAppointmentConfirmation({
-      to: clientEmail,
-      appointmentDetails: {
-        clientName,
-        date: new Date(date),
-        serviceType,
-      },
-    });
-
-    res.status(201).json(appointment);
-  } catch (error) {
-    console.error('Error creating appointment:', error);
-    res.status(500).json({ error: 'Failed to create appointment' });
+  // Validate required fields
+  if (!clientName || !clientEmail || !date || !serviceType) {
+    res.status(400).json({ error: 'Missing required fields' });
+    return;
   }
-});
+
+  // Create appointment in Google Calendar and database
+  calendarService.createAppointment({
+    startTime: new Date(date),
+    endTime: new Date(new Date(date).getTime() + 60 * 60 * 1000), // 1 hour default
+    clientId: clientEmail,
+    serviceType,
+  })
+    .then(appointment => {
+      // Send confirmation emails
+      return emailService.sendAppointmentConfirmation(
+        clientEmail,
+        {
+          clientName,
+          startTime: new Date(date),
+          endTime: new Date(new Date(date).getTime() + 60 * 60 * 1000), // 1 hour default
+          serviceType,
+          course: serviceType,
+        }
+      )
+        .then(() => {
+          res.status(201).json(appointment);
+        });
+    })
+    .catch(error => {
+      console.error('Error creating appointment:', error);
+      res.status(500).json({ error: 'Failed to create appointment' });
+    });
+};
 
 // Upload files for an appointment
-router.post('/:appointmentId/files', upload.array('files', 5), async (req, res) => {
-  try {
-    const { appointmentId } = req.params;
-    const files = req.files as Express.Multer.File[];
+const uploadFiles: RequestHandler<{ appointmentId: string }> = (req, res, next) => {
+  const { appointmentId } = req.params;
+  const files = req.files as Express.Multer.File[];
 
-    if (!files || files.length === 0) {
-      return res.status(400).json({ error: 'No files uploaded' });
-    }
-
-    const savedFiles = await Promise.all(
-      files.map(file => fileService.saveFile(file, appointmentId))
-    );
-
-    res.status(201).json(savedFiles);
-  } catch (error) {
-    console.error('Error uploading files:', error);
-    res.status(500).json({ error: 'Failed to upload files' });
+  if (!files || files.length === 0) {
+    res.status(400).json({ error: 'No files uploaded' });
+    return;
   }
-});
+
+  Promise.all(
+    files.map(file => fileService.saveFile(file, appointmentId))
+  )
+    .then(savedFiles => {
+      res.status(201).json(savedFiles);
+    })
+    .catch(error => {
+      console.error('Error uploading files:', error);
+      res.status(500).json({ error: 'Failed to upload files' });
+    });
+};
 
 // Get files for an appointment
-router.get('/:appointmentId/files', async (req, res) => {
+const getFiles: RequestHandler<{ appointmentId: string }> = async (req, res) => {
+  const { appointmentId } = req.params;
+  
   try {
-    const { appointmentId } = req.params;
-    const files = await fileService.getFilesByAppointment(appointmentId);
+    const files = await prisma.applicationMaterial.findMany({
+      where: { appointmentId },
+      select: {
+        id: true,
+        fileName: true,
+        fileSize: true,
+        fileType: true,
+        uploadedAt: true
+      }
+    });
     res.json(files);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error getting files:', error);
     res.status(500).json({ error: 'Failed to get files' });
   }
-});
+};
 
 // Download a specific file
-router.get('/files/:fileId', async (req, res) => {
+const downloadFile: RequestHandler<{ appointmentId: string; fileName: string }> = async (req, res) => {
+  const { appointmentId, fileName } = req.params;
+  
   try {
-    const { fileId } = req.params;
-    const file = await fileService.getFileData(fileId);
-
-    if (!file) {
-      return res.status(404).json({ error: 'File not found' });
-    }
-
-    res.setHeader('Content-Type', file.fileType);
-    res.setHeader('Content-Disposition', `attachment; filename="${file.fileName}"`);
-    res.send(file.data);
-  } catch (error) {
+    const filePath = await fileService.getFile(appointmentId, fileName);
+    res.download(filePath, fileName);
+  } catch (error: unknown) {
     console.error('Error downloading file:', error);
     res.status(500).json({ error: 'Failed to download file' });
   }
-});
+};
 
 // Cancel an appointment
-router.delete('/:appointmentId', async (req, res) => {
-  try {
-    const { appointmentId } = req.params;
-    const appointment = await prisma.appointment.findUnique({
-      where: { id: appointmentId },
-      include: { client: true },
+const cancelAppointment: RequestHandler<{ appointmentId: string }> = (req, res, next) => {
+  const { appointmentId } = req.params;
+
+  prisma.appointment.findUnique({
+    where: { id: appointmentId },
+    include: { client: true },
+  })
+    .then(appointment => {
+      if (!appointment) {
+        res.status(404).json({ error: 'Appointment not found' });
+        return;
+      }
+
+      return calendarService.cancelAppointment(appointmentId)
+        .then(() => {
+          // Send cancellation email
+          return emailService.sendAppointmentCancellation(
+            appointment.client.email,
+            {
+              clientName: `${appointment.client.firstName} ${appointment.client.lastName}`,
+              startTime: appointment.startTime,
+              serviceType: appointment.serviceType,
+              course: appointment.serviceType,
+            }
+          );
+        })
+        .then(() => {
+          res.json({ message: 'Appointment cancelled successfully' });
+        });
+    })
+    .catch(error => {
+      console.error('Error cancelling appointment:', error);
+      res.status(500).json({ error: 'Failed to cancel appointment' });
     });
+};
 
-    if (!appointment) {
-      return res.status(404).json({ error: 'Appointment not found' });
-    }
-
-    await calendarService.cancelAppointment(appointmentId);
-    
-    // Send cancellation email
-    await emailService.sendAppointmentCancellation({
-      to: appointment.client.email,
-      appointmentDetails: {
-        clientName: appointment.client.name,
-        date: appointment.startTime,
-        serviceType: appointment.serviceType,
-      },
-    });
-
-    res.json({ message: 'Appointment cancelled successfully' });
-  } catch (error) {
-    console.error('Error cancelling appointment:', error);
-    res.status(500).json({ error: 'Failed to cancel appointment' });
-  }
-});
+// Route handlers
+router.get('/available-slots', getAvailableSlots);
+router.post('/', createAppointment);
+router.post('/:appointmentId/files', upload.array('files', 5), uploadFiles);
+router.get('/:appointmentId/files', getFiles);
+router.get('/:appointmentId/files/:fileName', downloadFile);
+router.delete('/:appointmentId', cancelAppointment);
 
 export default router; 
