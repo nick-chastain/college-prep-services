@@ -10,9 +10,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo and About */}
           <div className="space-y-4">
-            <Link to="/" className="text-2xl font-bold text-brand-teal hover:opacity-90 transition-opacity flex items-center gap-2">
+            <Link to="/" className="text-2xl font-bold text-[rgb(87,155,142)] hover:opacity-90 transition-opacity flex items-center gap-2">
               <img 
-                src={`${import.meta.env.BASE_URL}CPS-Logo.png`} 
+                src={`${import.meta.env.BASE_URL}CPS_Logo.png`} 
                 alt="College Prep Services Logo" 
                 className="h-8"
               />

@@ -28,22 +28,22 @@ const Index = () => {
 
   const services = [
     {
-      title: "College Application Help",
-      description: "Comprehensive guidance through the college application process, from selecting schools to crafting compelling essays.",
-      icon: <GraduationCap size={28} />,
-      link: "/services"
-    },
-    {
-      title: "SAT Prep Classes",
+      title: "SAT Test Prep",
       description: "Targeted instruction and practice to maximize your SAT scores with proven strategies and techniques.",
       icon: <BookOpen size={28} />,
-      link: "/services"
+      link: "/sat-test-prep"
+    },
+    {
+      title: "College Admissions Counseling",
+      description: "Comprehensive guidance through the college application process, from selecting schools to crafting compelling essays.",
+      icon: <GraduationCap size={28} />,
+      link: "/college-admissions-counseling"
     },
     {
       title: "Individual Tutoring",
       description: "Personalized one-on-one academic support across various high school subjects to improve grades and understanding.",
       icon: <Book size={28} />,
-      link: "/services"
+      link: "/individual-tutoring"
     }
   ];
 
@@ -94,7 +94,7 @@ const Index = () => {
         <Hero />
 
         {/* Services Section */}
-        <section className="py-20 bg-white">
+        <section id="services" className="py-20 bg-white">
           <div className="container px-6 mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
@@ -158,7 +158,7 @@ const Index = () => {
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
                   Our goal is to make learning both efficient and impactful, empowering students to achieve their academic and college aspirations with confidence.
                 </p>
-                <Button asChild className="rounded-full px-8 mt-4">
+                <Button asChild variant="outline" className="rounded-full px-8 mt-4 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
                   <Link to="/about">
                     Learn More About Us
                   </Link>
@@ -213,12 +213,12 @@ const Index = () => {
                 Whether you're preparing for the SAT, working on college applications, or seeking academic support, we're here to help you achieve your goals. Contact us today to get started on your journey to success.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
+                <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
                   <Link to="/contact">
-                    Contact Us Today
+                    Schedule a Free Consultation
                   </Link>
                 </Button>
-                <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] text-white hover:bg-[rgb(87,155,142)]/90 border border-white">
+                <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:text-white hover:bg-[rgb(87,155,142)]">
                   <Link to="/schedule">
                     Schedule a Session
                   </Link>

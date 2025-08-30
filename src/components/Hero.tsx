@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(87,155,142,0.1),transparent_60%)]" />
       
       <div className="container px-6 mx-auto relative z-10">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -17,13 +17,13 @@ const Hero = () => {
             className="mb-8"
           >
             <span className="inline-block bg-accent text-accent-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              Premier College Preparation
+              Unlock Your Potential
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              Unlock Your <span className="text-brand-teal">Potential</span>
+              A Partnership for a <span className="text-brand-teal">Brighter Future</span>
             </h1>
             <p className="text-xl md:text-2xl text-brand-dark/80 max-w-2xl mx-auto leading-relaxed">
-              Personalized SAT Tutoring And College Application Help
+              From Test Scores to Life Success: Our Mentorship-Driven Approach to College Prep
             </p>
           </motion.div>
 
@@ -31,25 +31,53 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-4 mt-4"
+            className="flex flex-col items-center gap-6 mt-4"
           >
             <Button
-              asChild
+              onClick={() => {
+                document.getElementById('services')?.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }}
               size="lg"
-              className="rounded-full px-8 shadow-lg bg-[rgb(87,155,142)] text-white hover:bg-[rgb(87,155,142)]/90"
+              variant="outline"
+              className="rounded-full px-8 shadow-lg border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white cursor-pointer"
             >
-              <Link to="/contact">
-                Contact Us Today
-              </Link>
+              <span className="flex items-center gap-2">
+                Explore Our Services <ChevronRight size={16} />
+              </span>
             </Button>
+            
+            <div className="flex flex-col sm:flex-row gap-12 text-lg font-medium">
+              <Link 
+                to="/sat-test-prep" 
+                className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
+              >
+                SAT Test Prep
+              </Link>
+              <Link 
+                to="/college-admissions-counseling" 
+                className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
+              >
+                College Admissions Counseling
+              </Link>
+              <Link 
+                to="/individual-tutoring" 
+                className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
+              >
+                Individual Tutoring
+              </Link>
+            </div>
+            
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="rounded-full px-8 shadow-lg border-2 border-brand-teal text-brand-teal hover:bg-brand-teal/10"
+              className="rounded-full px-8 shadow-lg border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white"
             >
-              <Link to="/services" className="flex items-center gap-2">
-                Our Services <ChevronRight size={16} />
+              <Link to="/contact">
+                Schedule a Free Consultation
               </Link>
             </Button>
           </motion.div>
