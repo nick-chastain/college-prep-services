@@ -29,19 +29,19 @@ const Index = () => {
   const services = [
     {
       title: "SAT Test Prep",
-      description: "Targeted instruction and practice to maximize your SAT scores with proven strategies and techniques.",
+      description: "We provide the proven blueprint to help your student achieve a top-tier SAT score with confidence. Our two core programs are meticulously designed to elevate their scores and equip them with the skills to master any exam.",
       icon: <BookOpen size={28} />,
       link: "/sat-test-prep"
     },
     {
       title: "College Admissions Counseling",
-      description: "Comprehensive guidance through the college application process, from selecting schools to crafting compelling essays.",
+      description: "Our holistic, end-to-end partnership simplifies the entire college application process. We offer expert guidance to help your student craft winning essays, find the right college for their unique personality, and earn significant scholarships.",
       icon: <GraduationCap size={28} />,
       link: "/college-admissions-counseling"
     },
     {
       title: "Individual Tutoring",
-      description: "Personalized one-on-one academic support across various high school subjects to improve grades and understanding.",
+      description: "Expert guidance, tailored for your student's comprehensive success. We offer personalized, one-on-one tutoring in a range of academic subjects, equipping your student with the skills and confidence to excel in school and beyond.",
       icon: <Book size={28} />,
       link: "/individual-tutoring"
     }
@@ -49,16 +49,16 @@ const Index = () => {
 
   const stats = [
     {
-      value: "$286,536",
-      label: "Tuition Costs Saved",
-      icon: <DollarSign size={24} />,
-      expandedInfo: "Our College Application experts help our students get scholarships—scholarships that help make higher education dreams a reality."
-    },
-    {
       value: "+205",
       label: "Average SAT Score Improvement",
       icon: <TrendingUp size={24} />,
       expandedInfo: "Our proven SAT test strategies lead to higher scores—that means getting into better colleges and opening up scholarship opportunities."
+    },
+    {
+      value: "$286,536",
+      label: "Tuition Costs Saved",
+      icon: <DollarSign size={24} />,
+      expandedInfo: "Our College Application experts help our students get scholarships—scholarships that help make higher education dreams a reality."
     },
     {
       value: "+11%",
@@ -98,8 +98,8 @@ const Index = () => {
           <div className="container px-6 mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-              <p className="text-lg text-brand-dark/70 max-w-2xl mx-auto">
-                We offer comprehensive college preparation services tailored to your individual needs and goals.
+              <p className="text-lg text-brand-dark/70 max-w-3xl mx-auto">
+                Our dedicated team is ready to guide your student with an unparalleled level of service and care. Our commitment to their future is our guiding principle, providing the clear path you have been looking for.
               </p>
             </div>
 
@@ -133,6 +133,59 @@ const Index = () => {
               {stats.map((stat) => (
                 <StatisticCard key={stat.label} {...stat} />
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The College Prep Services Difference Section */}
+        <section className="py-20 bg-white">
+          <div className="container px-6 mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">The College Prep Services Difference</h2>
+              <p className="text-lg text-brand-dark/70 max-w-3xl mx-auto">
+                We're not here to offer hollow, transactional services; we provide a transformative partnership. Our approach is built on three core pillars that set us apart from every other provider:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-xl font-semibold mb-4 text-[rgb(87,155,142)]">Beyond the Score</h3>
+                <p className="text-brand-dark/80 leading-relaxed">
+                  While other companies focus on score guarantees alone, we focus on developing lifelong skills. The skills we teach—like managing test anxiety, leveraging data for strategic studying, and effective time management—are transferable and will help your student excel far beyond the test, in college and throughout their life. Our commitment is to their complete success and peace of mind.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-xl font-semibold mb-4 text-[rgb(87,155,142)]">Data-Driven, Personalized Practice</h3>
+                <p className="text-brand-dark/80 leading-relaxed">
+                  We have an unparalleled ability to provide truly personalized practice. Our partnership with the SAT Crash Course platform offers an unmatched level of insight into your student's learning journey. The platform is designed to look exactly like the Bluebook SAT, so your student is comfortable with the format and knows exactly how to navigate the test on exam day. We are committed to guiding you to exceptional outcomes.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-xl font-semibold mb-4 text-[rgb(87,155,142)]">End-to-End College and Career Guidance</h3>
+                <p className="text-brand-dark/80 leading-relaxed">
+                  Your student's success is our dedicated pursuit. We offer comprehensive support that goes beyond test prep and academic tutoring to address the entire college admissions process. We help students craft winning essays, discern the right colleges for their unique personalities, and build their resume throughout their high school career. This holistic approach is an integrated part of our service, not just an add-on, providing the strategic guidance you've been looking for.
+                </p>
+              </motion.div>
             </div>
           </div>
         </section>
