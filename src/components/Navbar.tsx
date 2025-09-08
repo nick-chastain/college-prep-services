@@ -40,6 +40,19 @@ const Navbar = () => {
     setIsServicesOpen(false);
   }, [location]);
 
+  // Close services dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (isServicesOpen && !target.closest('.services-dropdown')) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isServicesOpen]);
+
   return (
     <header 
       className={cn(
@@ -61,7 +74,7 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center space-x-8">
           <Button asChild size="sm" className="rounded-full px-6 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
             <Link to="/schedule">
-              Schedule a Session
+              Schedule a Free Consultation
             </Link>
           </Button>
           
@@ -81,7 +94,7 @@ const Navbar = () => {
           ))}
           
           {/* Services Dropdown */}
-          <div className="relative">
+          <div className="relative services-dropdown">
             <button
               onClick={() => setIsServicesOpen(!isServicesOpen)}
               className="text-base font-medium animated-underline transition-colors text-brand-dark hover:text-brand-teal flex items-center gap-1"

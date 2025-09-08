@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -31,24 +30,8 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-col items-center gap-6 mt-4"
+            className="flex flex-col items-center gap-8 mt-8"
           >
-            <Button
-              onClick={() => {
-                document.getElementById('services')?.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }}
-              size="lg"
-              variant="outline"
-              className="rounded-full px-8 shadow-lg border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white cursor-pointer"
-            >
-              <span className="flex items-center gap-2">
-                Explore Our Services <ChevronRight size={16} />
-              </span>
-            </Button>
-            
             <div className="flex flex-col sm:flex-row gap-12 text-lg font-medium">
               <Link 
                 to="/sat-test-prep" 

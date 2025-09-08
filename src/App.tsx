@@ -13,6 +13,7 @@ import Schedule from "./pages/Schedule";
 import SatTestPrep from "./pages/SatTestPrep";
 import CollegeAdmissionsCounseling from "./pages/CollegeAdmissionsCounseling";
 import IndividualTutoring from "./pages/IndividualTutoring";
+import ClientStories from "./pages/ClientStories";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/sat-test-prep" element={<SatTestPrep />} />
             <Route path="/college-admissions-counseling" element={<CollegeAdmissionsCounseling />} />
             <Route path="/individual-tutoring" element={<IndividualTutoring />} />
+            <Route path="/client-stories" element={<ClientStories />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
