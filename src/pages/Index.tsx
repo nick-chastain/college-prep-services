@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import StatisticCard from '@/components/StatisticCard';
-import TestimonialCard from '@/components/TestimonialCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
