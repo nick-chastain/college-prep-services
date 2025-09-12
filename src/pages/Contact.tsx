@@ -137,7 +137,7 @@ const Contact = () => {
                           <SelectItem value="general-question">General Question</SelectItem>
                           <SelectItem value="college-application">College Application Help</SelectItem>
                           <SelectItem value="sat-prep">SAT Prep Classes</SelectItem>
-                          <SelectItem value="tutoring">Individual Tutoring</SelectItem>
+                          <SelectItem value="tutoring">Academic Tutoring</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>

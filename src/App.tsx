@@ -14,7 +14,7 @@ import SatTestPrep from "./pages/SatTestPrep";
 import CollegeAdmissionsCounseling from "./pages/CollegeAdmissionsCounseling";
 import IvyLeagueBlueprint from "./pages/IvyLeagueBlueprint";
 import CollegePrepToolkit from "./pages/CollegePrepToolkit";
-import IndividualTutoring from "./pages/IndividualTutoring";
+import AcademicTutoring from "./pages/AcademicTutoring";
 import ClientStories from "./pages/ClientStories";
 import NotFound from "./pages/NotFound";
 
@@ -38,7 +38,7 @@ const App = () => (
             <Route path="/college-admissions-counseling" element={<CollegeAdmissionsCounseling />} />
             <Route path="/college-admissions-counseling/elite-admissions-blueprint" element={<IvyLeagueBlueprint />} />
             <Route path="/college-admissions-counseling/college-prep-toolkit" element={<CollegePrepToolkit />} />
-            <Route path="/individual-tutoring" element={<IndividualTutoring />} />
+            <Route path="/academic-tutoring" element={<AcademicTutoring />} />
             <Route path="/client-stories" element={<ClientStories />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

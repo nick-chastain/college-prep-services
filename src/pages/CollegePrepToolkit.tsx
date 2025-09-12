@@ -57,8 +57,12 @@ const CollegePrepToolkit = () => {
                       </Link>
                     </Button>
                   </div>
-                  <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
-                    <span className="text-gray-400 text-lg">Image placeholder</span>
+                  <div className="rounded-lg h-64 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}Unlimited-Essay.png`}
+                      alt="Unlimited Essay Editing & Strategy" 
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -71,8 +75,12 @@ const CollegePrepToolkit = () => {
                 className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[rgb(87,155,142)]"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center order-2 lg:order-1">
-                    <span className="text-gray-400 text-lg">Image placeholder</span>
+                  <div className="rounded-lg h-64 flex items-center justify-center overflow-hidden order-2 lg:order-1">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}Limited-Essay.png`}
+                      alt="Common App + 3 Essays" 
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                   <div className="order-1 lg:order-2">
                     <h3 className="text-2xl font-bold text-[rgb(87,155,142)] mb-4">Common App + 3 Essays</h3>
@@ -109,8 +117,12 @@ const CollegePrepToolkit = () => {
                       </Link>
                     </Button>
                   </div>
-                  <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
-                    <span className="text-gray-400 text-lg">Image placeholder</span>
+                  <div className="rounded-lg h-64 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}Hourly-Counseling.png`}
+                      alt="Hourly College Admissions Counseling" 
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                 </div>
               </motion.div>

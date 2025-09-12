@@ -18,7 +18,7 @@ const Navbar = () => {
   const serviceLinks = [
     { name: 'SAT Test Prep', path: '/sat-test-prep' },
     { name: 'College Admissions Counseling', path: '/college-admissions-counseling' },
-    { name: 'Individual Tutoring', path: '/individual-tutoring' },
+    { name: 'Academic Tutoring', path: '/academic-tutoring' },
   ];
 
   const collegeAdmissionsLinks = [
@@ -112,7 +112,7 @@ const Navbar = () => {
                 {serviceLinks.map((service) => (
                   <div key={service.name}>
                     {service.name === 'College Admissions Counseling' ? (
-                      <div className="relative group">
+                      <div>
                         <Link
                           to={service.path}
                           className="block px-4 py-2 text-sm text-brand-dark hover:text-brand-teal hover:bg-brand-light/50 transition-colors"
@@ -120,7 +120,7 @@ const Navbar = () => {
                         >
                           {service.name}
                         </Link>
-                        <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div className="pl-6 space-y-1">
                           {collegeAdmissionsLinks.map((link) => (
                             <Link
                               key={link.name}
@@ -174,11 +174,11 @@ const Navbar = () => {
       {/* Mobile Navigation - fixed the transparency issue */}
       <div
         className={cn(
-          "fixed inset-0 bg-white z-40 pt-24 px-6 pb-8 md:hidden transition-transform duration-300 ease-in-out",
+          "fixed inset-0 bg-white z-40 pt-24 px-6 pb-8 md:hidden transition-transform duration-300 ease-in-out overflow-y-auto",
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <nav className="flex flex-col space-y-8">
+        <nav className="flex flex-col space-y-6">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -200,7 +200,7 @@ const Navbar = () => {
             {serviceLinks.map((service) => (
               <div key={service.name}>
                 {service.name === 'College Admissions Counseling' ? (
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <Link
                       to={service.path}
                       className={cn(
@@ -210,13 +210,13 @@ const Navbar = () => {
                     >
                       {service.name}
                     </Link>
-                    <div className="pl-8 space-y-2">
+                    <div className="pl-8 space-y-1">
                       {collegeAdmissionsLinks.map((link) => (
                         <Link
                           key={link.name}
                           to={link.path}
                           className={cn(
-                            "text-base text-brand-dark/70 hover:text-brand-teal transition-colors py-1 block",
+                            "text-lg text-brand-dark/80 hover:text-brand-teal transition-colors py-2 block",
                             location.pathname === link.path && "text-brand-teal"
                           )}
                         >

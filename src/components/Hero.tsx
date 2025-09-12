@@ -46,10 +46,10 @@ const Hero = () => {
                 College Admissions Counseling
               </Link>
               <Link 
-                to="/individual-tutoring" 
+                to="/academic-tutoring" 
                 className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
               >
-                Individual Tutoring
+                Academic Tutoring
               </Link>
             </div>
             

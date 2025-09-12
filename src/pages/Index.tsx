@@ -41,10 +41,10 @@ const Index = () => {
       link: "/college-admissions-counseling"
     },
     {
-      title: "Individual Tutoring",
+      title: "Academic Tutoring",
       description: "Expert guidance, tailored for your student's comprehensive success. We offer personalized, one-on-one tutoring in a range of academic subjects, equipping your student with the skills and confidence to excel in school and beyond.",
       icon: <Book size={28} />,
-      link: "/individual-tutoring"
+      link: "/academic-tutoring"
     }
   ];
 

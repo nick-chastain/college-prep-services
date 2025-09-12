@@ -56,7 +56,7 @@ const SatTestPrep = () => {
                 SAT Test Prep
               </h1>
               <p className="text-xl md:text-2xl text-brand-dark/80 max-w-4xl mx-auto leading-relaxed mb-8">
-                The SAT is more than just a test; it's a launchpad for your student's future. Our commitment is to provide the precise path you have been looking for—one that not only elevates their score but also equips them with lifelong skills to master any challenge.
+                The SAT is more than just a test; it's a launchpad for your student's future. We provide the precise path you have been looking for—one that not only elevates their score but also equips them with lifelong skills to master any challenge.
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
@@ -88,7 +88,7 @@ const SatTestPrep = () => {
                 className="space-y-6"
               >
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
-                  We have an unparalleled ability to provide truly personalized practice. Our partnership with the SAT Crash Course software platform offers an unmatched level of insight into your student's learning journey. This ensures they know exactly how to navigate the test on exam day and have unmatched support from their tutor. The platform is designed to look exactly like the Bluebook SAT, so your student is comfortable with the format and knows exactly how to navigate the test on exam day. Our expertise is committed to guiding you to exceptional outcomes, with every detail handled to perfection.
+                  We have an unparalleled ability to provide truly personalized practice. We partnered with WellEd Labs to provide a platform that looks exactly like the Bluebook SAT, so your student is comfortable with the format and knows exactly how to navigate the test on exam day. The software allows our tutors to gather rich, actionable data on your student's progress to continually tailor their instruction. We are committed to guiding your student to exceptional outcomes.
                 </p>
               </motion.div>
               <motion.div

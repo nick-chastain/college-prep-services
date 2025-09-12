@@ -23,7 +23,7 @@ const IvyLeagueBlueprint = () => {
                 The Elite Admissions Blueprint
               </h1>
               <p className="text-xl md:text-2xl text-brand-dark/80 max-w-4xl mx-auto leading-relaxed mb-8">
-                This comprehensive service is your family's definitive guide to securing your student's acceptance to a top-tier university. We are a dedicated expert partner, providing an elevated, caring experience that combines proven methodologies with meticulous attention to detail. We provide end-to-end support for your student's entire journey, from building a compelling high school narrative to crafting a winning application and preparing them for lasting life success.
+                This comprehensive service is your family's definitive guide to securing your student's acceptance to a top-tier university. We simplify the entire journey, from building a compelling high school narrative to crafting a winning application and preparing them for lasting life success.
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">

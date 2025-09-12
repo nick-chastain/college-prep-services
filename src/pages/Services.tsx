@@ -34,7 +34,7 @@ const Services = () => {
       ]
     },
     {
-      title: "Individual Tutoring",
+      title: "Academic Tutoring",
       description: "Get personalized 1-on-1 tutoring for high school courses to tackle homework and improve your grades, online or in-person!",
       icon: <Book size={32} />,
       features: [

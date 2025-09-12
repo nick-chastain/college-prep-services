@@ -23,7 +23,7 @@ const CollegeAdmissionsCounseling = () => {
                 The College Application Journey: Simplified
               </h1>
               <p className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed mb-8">
-                The path to college can be overwhelming. We're here to provide the precise blueprint and unwavering guidance to help your student navigate the process with confidence. We offer two distinct paths to ensure you find the support that's right for you.
+                The path to college can be overwhelming. We're here to provide the proven framework and unwavering guidance to help your student navigate the process with confidence. We offer two distinct paths to ensure you find the support that's right for you.
               </p>
             </motion.div>
           </div>
