@@ -169,7 +169,7 @@ const SatTestPrep = () => {
                     </div>
                     
                     <div>
-                      <p className="font-bold text-brand-dark mb-2">For the Ivy League Aspirant:</p>
+                      <p className="font-bold text-brand-dark mb-2">For the Elite Aspirant:</p>
                       <p className="text-brand-dark/80">This program is for students who have already established a strong foundation with a prior score of 1350 or higher on an official or practice SAT, and are now ready for the final push to the top.</p>
                     </div>
                     

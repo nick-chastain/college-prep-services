@@ -21,6 +21,11 @@ const Navbar = () => {
     { name: 'Individual Tutoring', path: '/individual-tutoring' },
   ];
 
+  const collegeAdmissionsLinks = [
+    { name: 'Elite Admissions Blueprint', path: '/college-admissions-counseling/elite-admissions-blueprint' },
+    { name: 'Targeted Services', path: '/college-admissions-counseling/college-prep-toolkit' },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -105,14 +110,39 @@ const Navbar = () => {
             {isServicesOpen && (
               <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                 {serviceLinks.map((service) => (
-                  <Link
-                    key={service.name}
-                    to={service.path}
-                    className="block px-4 py-2 text-sm text-brand-dark hover:text-brand-teal hover:bg-brand-light/50 transition-colors"
-                    onClick={() => setIsServicesOpen(false)}
-                  >
-                    {service.name}
-                  </Link>
+                  <div key={service.name}>
+                    {service.name === 'College Admissions Counseling' ? (
+                      <div className="relative group">
+                        <Link
+                          to={service.path}
+                          className="block px-4 py-2 text-sm text-brand-dark hover:text-brand-teal hover:bg-brand-light/50 transition-colors"
+                          onClick={() => setIsServicesOpen(false)}
+                        >
+                          {service.name}
+                        </Link>
+                        <div className="absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                          {collegeAdmissionsLinks.map((link) => (
+                            <Link
+                              key={link.name}
+                              to={link.path}
+                              className="block px-4 py-2 text-sm text-brand-dark hover:text-brand-teal hover:bg-brand-light/50 transition-colors"
+                              onClick={() => setIsServicesOpen(false)}
+                            >
+                              {link.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        to={service.path}
+                        className="block px-4 py-2 text-sm text-brand-dark hover:text-brand-teal hover:bg-brand-light/50 transition-colors"
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        {service.name}
+                      </Link>
+                    )}
+                  </div>
                 ))}
               </div>
             )}
@@ -168,16 +198,45 @@ const Navbar = () => {
           <div className="space-y-4">
             <div className="text-xl font-medium text-brand-dark py-2">Services</div>
             {serviceLinks.map((service) => (
-              <Link
-                key={service.name}
-                to={service.path}
-                className={cn(
-                  "text-lg text-brand-dark/80 hover:text-brand-teal transition-colors py-2 block pl-4",
-                  location.pathname === service.path && "text-brand-teal"
+              <div key={service.name}>
+                {service.name === 'College Admissions Counseling' ? (
+                  <div className="space-y-2">
+                    <Link
+                      to={service.path}
+                      className={cn(
+                        "text-lg text-brand-dark/80 hover:text-brand-teal transition-colors py-2 block pl-4",
+                        location.pathname === service.path && "text-brand-teal"
+                      )}
+                    >
+                      {service.name}
+                    </Link>
+                    <div className="pl-8 space-y-2">
+                      {collegeAdmissionsLinks.map((link) => (
+                        <Link
+                          key={link.name}
+                          to={link.path}
+                          className={cn(
+                            "text-base text-brand-dark/70 hover:text-brand-teal transition-colors py-1 block",
+                            location.pathname === link.path && "text-brand-teal"
+                          )}
+                        >
+                          {link.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    to={service.path}
+                    className={cn(
+                      "text-lg text-brand-dark/80 hover:text-brand-teal transition-colors py-2 block pl-4",
+                      location.pathname === service.path && "text-brand-teal"
+                    )}
+                  >
+                    {service.name}
+                  </Link>
                 )}
-              >
-                {service.name}
-              </Link>
+              </div>
             ))}
           </div>
           
