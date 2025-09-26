@@ -16,6 +16,7 @@ import IvyLeagueBlueprint from "./pages/IvyLeagueBlueprint";
 import CollegePrepToolkit from "./pages/CollegePrepToolkit";
 import AcademicTutoring from "./pages/AcademicTutoring";
 import ClientStories from "./pages/ClientStories";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/college-admissions-counseling/college-prep-toolkit" element={<CollegePrepToolkit />} />
             <Route path="/academic-tutoring" element={<AcademicTutoring />} />
             <Route path="/client-stories" element={<ClientStories />} />
+            <Route path="/faq" element={<FAQ />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

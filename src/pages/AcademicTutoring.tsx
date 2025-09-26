@@ -58,7 +58,7 @@ const AcademicTutoring = () => {
     },
     {
       subject: "Humanities",
-      courses: ["English", "History", "Social Sciences (e.g., Economics)"],
+      courses: ["English", "History", "Economics"],
       gradeLevels: "7th - 12th Grade"
     }
   ];

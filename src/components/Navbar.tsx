@@ -8,11 +8,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
   ];
 
   const serviceLinks = [
@@ -24,6 +24,12 @@ const Navbar = () => {
   const collegeAdmissionsLinks = [
     { name: 'Elite Admissions Blueprint', path: '/college-admissions-counseling/elite-admissions-blueprint' },
     { name: 'Targeted Services', path: '/college-admissions-counseling/college-prep-toolkit' },
+  ];
+
+  const aboutLinks = [
+    { name: 'About Us', path: '/about' },
+    { name: 'Success Stories', path: '/client-stories' },
+    { name: 'FAQs', path: '/faq' },
   ];
 
   useEffect(() => {
@@ -43,20 +49,24 @@ const Navbar = () => {
   useEffect(() => {
     setIsMenuOpen(false);
     setIsServicesOpen(false);
+    setIsAboutOpen(false);
   }, [location]);
 
-  // Close services dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       if (isServicesOpen && !target.closest('.services-dropdown')) {
         setIsServicesOpen(false);
       }
+      if (isAboutOpen && !target.closest('.about-dropdown')) {
+        setIsAboutOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isServicesOpen]);
+  }, [isServicesOpen, isAboutOpen]);
 
   return (
     <header 
@@ -143,6 +153,31 @@ const Navbar = () => {
                       </Link>
                     )}
                   </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* About Dropdown */}
+          <div className="relative about-dropdown">
+            <button
+              onClick={() => setIsAboutOpen(!isAboutOpen)}
+              className="text-base font-medium animated-underline transition-colors text-brand-dark hover:text-brand-teal flex items-center gap-1"
+            >
+              About <ChevronDown size={16} className={cn("transition-transform", isAboutOpen && "rotate-180")} />
+            </button>
+            
+            {isAboutOpen && (
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                {aboutLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className="block px-4 py-2 text-sm text-brand-dark hover:text-brand-teal hover:bg-brand-light/50 transition-colors"
+                    onClick={() => setIsAboutOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
                 ))}
               </div>
             )}
@@ -239,6 +274,35 @@ const Navbar = () => {
               </div>
             ))}
           </div>
+
+          {/* Mobile About */}
+          <div className="space-y-4">
+            <div className="text-xl font-medium text-brand-dark py-2">About</div>
+            {aboutLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={cn(
+                  "text-lg text-brand-dark/80 hover:text-brand-teal transition-colors py-2 block pl-4",
+                  location.pathname === link.path && "text-brand-teal"
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          <Link
+            to="/contact"
+            className={cn(
+              "text-xl font-medium animated-underline transition-colors py-2",
+              location.pathname === "/contact"
+                ? "text-brand-teal"
+                : "text-brand-dark hover:text-brand-teal"
+            )}
+          >
+            Contact
+          </Link>
           
           <Button asChild size="lg" className="w-full rounded-full mt-4 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
             <Link to="/schedule">
