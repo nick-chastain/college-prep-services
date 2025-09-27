@@ -84,7 +84,7 @@ const AcademicTutoring = () => {
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                  <Link to="/schedule">
+                  <Link to="/contact">
                     Schedule Your Free Diagnostic Hour
                   </Link>
                 </Button>
@@ -185,7 +185,7 @@ const AcademicTutoring = () => {
                     </div>
                     <div className="mt-auto pt-4">
                       <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                        <Link to="/schedule">
+                        <Link to="/contact">
                           Get Started
                         </Link>
                       </Button>
@@ -286,7 +286,7 @@ const AcademicTutoring = () => {
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                  <Link to="/schedule">
+                  <Link to="/contact">
                     Schedule Your Free Diagnostic Hour
                   </Link>
                 </Button>

@@ -27,7 +27,7 @@ const IvyLeagueBlueprint = () => {
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                  <Link to="/schedule">
+                  <Link to="/contact">
                     Schedule a Free Consultation
                   </Link>
                 </Button>
@@ -69,7 +69,7 @@ const IvyLeagueBlueprint = () => {
 
               <div className="text-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                  <Link to="/schedule">
+                  <Link to="/contact">
                     Schedule a Free Consultation
                   </Link>
                 </Button>
@@ -156,7 +156,7 @@ const IvyLeagueBlueprint = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                  <Link to="/schedule">
+                  <Link to="/contact">
                     Schedule a Free Consultation
                   </Link>
                 </Button>

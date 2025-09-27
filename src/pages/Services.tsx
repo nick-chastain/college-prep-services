@@ -117,7 +117,7 @@ const Services = () => {
                     </ul>
                     <div className="pt-4">
                       <Button asChild className="rounded-full px-6 bg-brand-teal hover:bg-brand-teal/90 text-white">
-                        <Link to="/schedule">
+                        <Link to="/contact">
                           Schedule a Session
                         </Link>
                       </Button>
@@ -242,7 +242,7 @@ const Services = () => {
                   </Link>
                 </Button>
                 <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] text-white hover:bg-[rgb(87,155,142)]/90 border border-white">
-                  <Link to="/schedule">
+                  <Link to="/contact">
                     Schedule a Session
                   </Link>
                 </Button>

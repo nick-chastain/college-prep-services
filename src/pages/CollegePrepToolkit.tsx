@@ -112,7 +112,7 @@ const CollegePrepToolkit = () => {
                       For clients who need targeted support on specific aspects of the college application process, our hourly counseling provides expert guidance on a flexible basis.
                     </p>
                     <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                      <Link to="/schedule">
+                      <Link to="/contact">
                         Schedule a Session
                       </Link>
                     </Button>

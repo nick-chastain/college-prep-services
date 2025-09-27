@@ -88,7 +88,7 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Button asChild size="sm" className="rounded-full px-6 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
-            <Link to="/schedule">
+            <Link to="/contact">
               Schedule a Free Consultation
             </Link>
           </Button>
@@ -305,7 +305,7 @@ const Navbar = () => {
           </Link>
           
           <Button asChild size="lg" className="w-full rounded-full mt-4 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
-            <Link to="/schedule">
+            <Link to="/contact">
               Schedule a Session
             </Link>
           </Button>

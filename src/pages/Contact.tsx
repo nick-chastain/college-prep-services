@@ -36,22 +36,26 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     
+    const payload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      service: formData.service,
+      referral: formData.referral,
+      message: formData.message,
+      timestamp: new Date().toISOString()
+    };
+    
     try {
       const response = await fetch('https://n8n-production-0a45.up.railway.app/webhook/contact-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          service: formData.service,
-          referral: formData.referral,
-          message: formData.message,
-          timestamp: new Date().toISOString()
-        }),
+        body: JSON.stringify(payload),
       });
+      
+      const responseText = await response.text();
       
       if (response.ok) {
         toast({
@@ -67,13 +71,14 @@ const Contact = () => {
           message: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(`HTTP ${response.status}: ${responseText}`);
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or contact us directly.",
+        description: `Failed to send message: ${errorMessage}. Please try again or contact us directly.`,
         variant: "destructive",
       });
     } finally {

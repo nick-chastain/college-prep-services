@@ -9,7 +9,6 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-import Schedule from "./pages/Schedule";
 import SatTestPrep from "./pages/SatTestPrep";
 import CollegeAdmissionsCounseling from "./pages/CollegeAdmissionsCounseling";
 import IvyLeagueBlueprint from "./pages/IvyLeagueBlueprint";
@@ -34,7 +33,6 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/schedule" element={<Schedule />} />
             <Route path="/sat-test-prep" element={<SatTestPrep />} />
             <Route path="/college-admissions-counseling" element={<CollegeAdmissionsCounseling />} />
             <Route path="/college-admissions-counseling/elite-admissions-blueprint" element={<IvyLeagueBlueprint />} />
