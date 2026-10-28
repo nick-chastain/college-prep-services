@@ -1,6 +1,9 @@
 {
   "name": "college-prep-services",
   "private": true,
+  "overrides": {
+    "form-data": "4.0.6"
+  },
   "version": "1.0.0",
   "type": "module",
   "scripts": {
@@ -48,7 +51,7 @@
     "framer-motion": "^11.0.8",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.344.0",
-    "next-themes": "^0.2.1",
+    "next-themes": "^0.4.6",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.0",
     "react-dom": "^18.2.0",
