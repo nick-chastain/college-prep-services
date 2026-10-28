@@ -1,14 +1,23 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Mail, Phone } from 'lucide-react';
 
+const quickLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'SAT Prep', path: '/sat-test-prep' },
+  { name: 'Programs & Pricing', path: '/services' },
+  { name: 'Success Stories', path: '/client-stories' },
+  { name: 'About', path: '/about' },
+  { name: 'FAQ', path: '/faq' },
+  { name: 'Contact', path: '/contact' },
+];
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
     <footer className="bg-brand-light py-16 border-t border-gray-100">
       <div className="container px-6 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Logo and About */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <div className="space-y-4">
             <Link to="/" className="text-2xl font-bold text-[rgb(87,155,142)] hover:opacity-90 transition-opacity flex items-center gap-2">
               <img 
@@ -19,7 +28,7 @@ const Footer = () => {
               College Prep Services
             </Link>
             <p className="text-brand-dark/80 mt-4 leading-relaxed">
-            Helping high school students achieve their academic and life goals. Our commitment is to your complete success and peace of mind.
+              Private and small-group SAT prep for Denver-area and online students. Clear programs, transparent pricing, and score guarantees with straightforward terms.
             </p>
             <div className="flex space-x-4 pt-4">
               <a href="#" aria-label="Facebook" className="text-gray-500 hover:text-brand-teal transition-colors hover:scale-110">
@@ -39,59 +48,31 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Our Services</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/sat-test-prep" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-105">
-                  SAT Test Prep
-                </Link>
-              </li>
-              <li>
-                <Link to="/college-admissions-counseling" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-105">
-                  College Admissions Counseling
-                </Link>
-              </li>
-              <li>
-                <Link to="/academic-tutoring" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-105">
-                  Academic Tutoring
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
-              <li>
-                <Link to="/about" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-105">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-105">
-                  Contact
-                </Link>
-              </li>
+              {quickLinks.map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-105">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Information */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-4">
-              
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="text-brand-teal flex-shrink-0" />
-                <a href="tel:+14846439324" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-100">
+                <a href="tel:+14846439324" className="text-brand-dark/80 hover:text-brand-teal transition-colors">
                   (484) 643-9324
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-brand-teal flex-shrink-0" />
-                <a href="mailto:info@collegeprepservicesllc.com" className="text-brand-dark/80 hover:text-brand-teal transition-colors hover:scale-100">
+                <a href="mailto:info@collegeprepservicesllc.com" className="text-brand-dark/80 hover:text-brand-teal transition-colors">
                   info@collegeprepservicesllc.com
                 </a>
               </li>

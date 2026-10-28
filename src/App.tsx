@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
@@ -10,10 +10,6 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import SatTestPrep from "./pages/SatTestPrep";
-import CollegeAdmissionsCounseling from "./pages/CollegeAdmissionsCounseling";
-import IvyLeagueBlueprint from "./pages/IvyLeagueBlueprint";
-import CollegePrepToolkit from "./pages/CollegePrepToolkit";
-import AcademicTutoring from "./pages/AcademicTutoring";
 import ClientStories from "./pages/ClientStories";
 import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
@@ -25,7 +21,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <HashRouter>
+      <BrowserRouter>
         <ScrollToTop />
         <AnimatePresence mode="wait">
           <Routes>
@@ -34,17 +30,15 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sat-test-prep" element={<SatTestPrep />} />
-            <Route path="/college-admissions-counseling" element={<CollegeAdmissionsCounseling />} />
-            <Route path="/college-admissions-counseling/elite-admissions-blueprint" element={<IvyLeagueBlueprint />} />
-            <Route path="/college-admissions-counseling/college-prep-toolkit" element={<CollegePrepToolkit />} />
-            <Route path="/academic-tutoring" element={<AcademicTutoring />} />
+            <Route path="/college-admissions-counseling" element={<Navigate to="/sat-test-prep" replace />} />
+            <Route path="/college-admissions-counseling/*" element={<Navigate to="/sat-test-prep" replace />} />
+            <Route path="/academic-tutoring" element={<Navigate to="/sat-test-prep" replace />} />
             <Route path="/client-stories" element={<ClientStories />} />
             <Route path="/faq" element={<FAQ />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
-      </HashRouter>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
