@@ -13,12 +13,6 @@ export const testimonials: Testimonial[] = [
     role: "Student"
   },
   {
-    title: "Full Ride with Application Help",
-    quote: "Nick worked with me on multiple essays, helping me develop strong structures, refine my ideas, clarify my writing, and thoughtfully edit multiple drafts. His help made the entire application process far more manageable and ultimately much stronger.",
-    author: "Isabel B.",
-    role: "Student"
-  },
-  {
     title: "From 1200 to 1350 in 7 Sessions",
     quote: "This course was amazing overall. I went in not feeling confident in my skills, with pretty much the same score on my first practice test as I had gotten on my PSATs. With all of the practice, tips, motivation, vocabulary help, and going over all of the answers, it helped me reach a really good score for what I thought I was capable of.",
     author: "Tara D.",
@@ -30,6 +24,7 @@ export const testimonials: Testimonial[] = [
     author: "Ashley B.",
     role: "Parent"
   },
+  // TODO NICK confirm SAT: keep Anna A. only if this review was for SAT prep.
   {
     title: "Very Accommodating and Flexible!",
     quote: "Really helped our child, and we liked that Nick was flexible with times/availability. Thank you Nick!",
