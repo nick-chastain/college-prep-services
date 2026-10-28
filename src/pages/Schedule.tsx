@@ -38,7 +38,7 @@ const Schedule = () => {
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">Schedule Your Session</h1>
               <p className="text-lg text-white/90">
-                Take the first step towards your academic success by scheduling a personalized session with our expert tutors and college advisors.
+                Book a free SAT strategy session. Live sessions are 1.5 hours.
               </p>
             </div>
 

@@ -5,8 +5,12 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { testimonials } from '@/data/testimonials';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { PAGE_META } from '@/data/seo';
 
 const ClientStories = () => {
+  useDocumentMeta(PAGE_META.stories.title, PAGE_META.stories.description);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -22,10 +26,10 @@ const ClientStories = () => {
                 transition={{ duration: 0.7 }}
               >
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  Client <span className="text-brand-teal">Success Stories</span>
+                  SAT <span className="text-brand-teal">Success Stories</span>
                 </h1>
                 <p className="text-xl text-brand-dark/80 leading-relaxed">
-                  Discover how our partnerships have transformed students' academic journeys and opened doors to their dream colleges.
+                  Feedback from SAT students and parents we've worked with.
                 </p>
               </motion.div>
             </div>
@@ -38,7 +42,7 @@ const ClientStories = () => {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Partnerships Speak for Themselves</h2>
               <p className="text-lg text-brand-dark/70 max-w-2xl mx-auto">
-                We consider guiding your student to success our distinct privilege. Here are the outcomes our partnerships have made possible.
+                Feedback from SAT students and parents we've worked with.
               </p>
             </div>
 
@@ -79,12 +83,12 @@ const ClientStories = () => {
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Success Story?</h2>
               <p className="text-lg text-brand-dark/80 mb-8 leading-relaxed">
-                Join the students and families who have achieved their academic goals with our expert guidance and personalized approach.
+                Book a free strategy session. We'll review your student's current score, target, and test date, and recommend the right program.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
+                <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
                   <Link to="/contact">
-                    Schedule a Free Consultation
+                    Book a Free Strategy Session
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">

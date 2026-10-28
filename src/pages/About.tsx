@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { PAGE_META } from '@/data/seo';
 
 const About = () => {
+  useDocumentMeta(PAGE_META.about.title, PAGE_META.about.description);
+
   const values = [
     {
       title: "Dedication to Exceptional Results",
-      description: "We are deeply committed to the measurable success of our students, focusing our expertise and efforts on delivering impactful academic and personal growth."
+      description: "We are deeply committed to measurable SAT score growth, focusing our expertise on a clear plan and steady weekly progress."
     },
     {
       title: "Uncompromising Service",
@@ -17,6 +21,10 @@ const About = () => {
     {
       title: "Empowering, Trusting Partnerships",
       description: "We approach every client as a valued individual, providing straightforward guidance with genuine warmth and humility, ensuring they feel cared for, understood, and never a burden, throughout their entire journey with us."
+    },
+    {
+      title: "Transparent Integrity",
+      description: "We earn your peace of mind with a clear, honest process, including transparent pricing and guarantee terms spelled out in plain English before you enroll."
     }
   ];
 
@@ -51,7 +59,7 @@ const About = () => {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-8">Our Philosophy</h2>
               <p className="text-xl md:text-2xl text-brand-dark/80 leading-relaxed">
-                At our core, we believe that academic and life success are earned. Our uncompromising service excellence and genuine guidance are a direct source of strength for your student, empowering them to achieve their full potential.
+                Our focus is singular: helping your student earn the SAT score that opens doors to more college options and merit scholarships, with a clear plan and steady support every week.
               </p>
             </motion.div>
           </div>
@@ -90,13 +98,13 @@ const About = () => {
                 </p>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
                   College Prep Services was founded to lift that stress from your shoulders and guide your family through 
-                  the process with unwavering care. Our team's sole purpose is to make test prep and college applications 
-                  feel manageable, enabling your home to be more peaceful and your student more successful.
+                  SAT prep with unwavering care. Our team's sole purpose is to make the path to a stronger SAT score 
+                  feel manageable, with a clear plan and steady support every week.
                 </p>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
                 The challenges of the COVID-19 pandemic severely impacted the academic foundations of many students. 
-                Seeing this problem firsthand with his cousin—who was struggling with core subjects vital for success—drove our founder, Nick, to create 
-                a better solution. His passion is to instill or restore the confidence in each student that they can succeed and achieve their goals.
+                Seeing this problem firsthand with his cousin—who was struggling with core subjects vital for the SAT—drove our founder, Nick, to create 
+                a better solution. His passion is to instill or restore the confidence in each student that they can walk into test day prepared.
                 </p>
               </motion.div>
             </div>
@@ -116,7 +124,7 @@ const About = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Values: The Guiding Principles</h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -149,6 +157,7 @@ const About = () => {
               >
                 <h2 className="text-3xl md:text-4xl font-bold">Meet the Expert: The Founder's Profile</h2>
                 <h3 className="text-2xl md:text-3xl font-semibold text-[rgb(87,155,142)]">Nick Chastain</h3>
+                {/* TODO NICK: confirm credentials/scores/years to display — do not invent. Existing bio facts are unchanged. */}
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
                   Nick graduated with a Chemical and Biological Engineering degree from Colorado State University with minors in Entrepreneurship and Innovation, Mathematics, and Chemistry.
                   As a senior, he earned the Silver Medal Award, the highest award a graduating engineer can achieve in the state of Colorado.
@@ -158,7 +167,7 @@ const About = () => {
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
                   This passion for solving problems, combined with a desire to help others reach their potential, is what drove him to 
                   start College Prep Services. What began as helping his cousin with a test prep problem quickly 
-                  grew into a mission to help high school students get into their dream schools and confidently pursue their future. 
+                  grew into a mission to help high school students earn the SAT score that opens more college options. 
                   As an avid reader and outdoor enthusiast, Nick believes in the power of a great story and the 
                   importance of a well-rounded life.
                 </p>
@@ -190,15 +199,22 @@ const About = () => {
               viewport={{ once: true, amount: 0.3 }}
               className="max-w-3xl mx-auto"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Proven Approach: Your Path to Success</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">What Drives Us</h2>
               <p className="text-xl text-brand-dark/80 mb-8">
-                Don't just take our word for it. See the results of our philosophy in action.
+                We started this work because students needed a clear, steady way to close SAT gaps. The job is still the same: a diagnostic, a written plan, and weekly coaching until test day.
               </p>
-              <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
-                <Link to="/client-stories">
-                  See Our Success Stories
-                </Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
+                  <Link to="/sat-test-prep#compare">
+                    Compare SAT Programs
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
+                  <Link to="/client-stories">
+                    See Our Success Stories
+                  </Link>
+                </Button>
+              </div>
             </motion.div>
           </div>
         </section>

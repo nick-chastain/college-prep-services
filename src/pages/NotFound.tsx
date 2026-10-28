@@ -7,9 +7,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Home, ArrowLeft } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const NotFound = () => {
   const location = useLocation();
+  useDocumentMeta("Page Not Found | College Prep Services", "That page is not on the College Prep Services site. See our SAT programs or return home.");
 
   useEffect(() => {
     console.error(
@@ -43,8 +45,8 @@ const NotFound = () => {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link to="/" className="flex items-center gap-2">
-                    <ArrowLeft size={18} /> Go Back
+                  <Link to="/sat-test-prep" className="flex items-center gap-2">
+                    <ArrowLeft size={18} /> See SAT programs
                   </Link>
                 </Button>
               </div>

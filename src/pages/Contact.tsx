@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,9 +10,27 @@ import { Mail } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import { PAGE_META } from '@/data/seo';
+
+const PROGRAM_OPTIONS = [
+  { value: 'pinnacle', label: 'Pinnacle (1-on-1, 1500+)' },
+  { value: 'ascension', label: 'Ascension (1-on-1, +160)' },
+  { value: 'cohort', label: 'Cohort Class' },
+  { value: 'ai-tutor-waitlist', label: 'AI Tutor & Materials Waitlist' },
+  { value: 'not-sure', label: 'Not sure, help me choose' },
+  { value: 'general-question', label: 'General Question' },
+] as const;
+
+type ProgramValue = (typeof PROGRAM_OPTIONS)[number]['value'];
+
+const isProgramValue = (value: string | null): value is ProgramValue =>
+  PROGRAM_OPTIONS.some((option) => option.value === value);
 
 const Contact = () => {
+  useDocumentMeta(PAGE_META.contact.title, PAGE_META.contact.description);
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -22,6 +40,13 @@ const Contact = () => {
     message: ''
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const program = searchParams.get('program');
+    if (isProgramValue(program)) {
+      setFormData((prev) => ({ ...prev, service: program }));
+    }
+  }, [searchParams]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -91,7 +116,6 @@ const Contact = () => {
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Hero Section */}
         <section className="py-16 bg-brand-light">
           <div className="container px-6 mx-auto">
             <motion.div
@@ -100,9 +124,12 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Book a Free Strategy Session</h1>
+              <p className="text-lg text-brand-dark/80 leading-relaxed mb-4">
+                Book a free strategy session or ask a question. We usually reply within one business day [NICK: confirm response time or delete].
+              </p>
               <p className="text-lg text-brand-dark/80 leading-relaxed mb-8">
-                Have questions or ready to get started? Reach out to us today.
+                Tell us your student's current or most recent SAT/PSAT score, target score, and planned test date, and we'll recommend the right program.
               </p>
               <div className="flex justify-center">
                 <Button asChild size="lg" variant="outline" className="rounded-full px-8 border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
@@ -115,7 +142,6 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Form & Email */}
         <section className="py-20 bg-[rgb(87,155,142)]">
           <div className="container px-6 mx-auto">
             <div className="max-w-3xl mx-auto">
@@ -164,21 +190,20 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="service">Service Interested In</Label>
+                      <Label htmlFor="service">Program</Label>
                       <Select 
                         value={formData.service} 
                         onValueChange={(value) => handleSelectChange('service', value)}
-                        defaultValue="general-question"
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a service" />
+                          <SelectValue placeholder="Select a program" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="general-question">General Question</SelectItem>
-                          <SelectItem value="sat-prep">SAT Test Prep</SelectItem>
-                          <SelectItem value="college-application">College Admissions Counseling</SelectItem>                          
-                          <SelectItem value="tutoring">Academic Tutoring</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          {PROGRAM_OPTIONS.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
@@ -212,7 +237,8 @@ const Contact = () => {
                         name="message" 
                         rows={4} 
                         value={formData.message} 
-                        onChange={handleInputChange} 
+                        onChange={handleInputChange}
+                        placeholder="Include your student's current or most recent SAT/PSAT score, target score, and planned test date."
                         required 
                       />
                     </div>
@@ -249,7 +275,6 @@ const Contact = () => {
             </div>
           </div>
         </section>
-
       </main>
 
       <Footer />

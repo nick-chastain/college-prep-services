@@ -16,13 +16,13 @@ const Hero = () => {
             className="mb-8"
           >
             <span className="inline-block bg-accent text-accent-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              Unlock Your Potential
+              SAT Prep in Denver & Online
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              A Partnership for a <span className="text-brand-teal">Brighter Future</span>
+              SAT Prep That Moves Scores — With a Guarantee You Can Actually Read.
             </h1>
-            <p className="text-xl md:text-2xl text-brand-dark/80 max-w-2xl mx-auto leading-relaxed">
-              From Test Scores to Life Success: Our Mentorship-Driven Approach to College Prep
+            <p className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
+              Private 1-on-1 programs and small-group cohorts led by Nick Chastain. Clear schedules, transparent pricing, and score guarantees tied to simple commitments.
             </p>
           </motion.div>
 
@@ -30,44 +30,31 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-col items-center gap-8 mt-8"
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
           >
-            <div className="flex flex-col sm:flex-row gap-12 text-lg font-medium">
-              <Link 
-                to="/sat-test-prep" 
-                className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
-              >
-                SAT Test Prep
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full px-8 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white"
+            >
+              <Link to="/contact">
+                Book a Free Strategy Session
               </Link>
-              <Link 
-                to="/college-admissions-counseling" 
-                className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
-              >
-                College Admissions Counseling
-              </Link>
-              <Link 
-                to="/academic-tutoring" 
-                className="text-brand-dark hover:text-[rgb(87,155,142)] transition-all duration-300 hover:scale-105 cursor-pointer"
-              >
-                Academic Tutoring
-              </Link>
-            </div>
-            
+            </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
               className="rounded-full px-8 shadow-lg border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white"
             >
-              <Link to="/contact">
-                Schedule a Free Consultation
+              <Link to="/sat-test-prep#compare">
+                Compare Programs
               </Link>
             </Button>
           </motion.div>
         </div>
       </div>
 
-      {/* Decorative Elements */}
       <div className="absolute -bottom-48 left-0 right-0 h-64 bg-gradient-to-b from-transparent to-white z-0" />
       <div className="absolute top-32 -left-32 w-72 h-72 bg-brand-teal/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 -right-32 w-80 h-80 bg-brand-teal/5 rounded-full blur-3xl" />
