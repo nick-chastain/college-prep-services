@@ -4,7 +4,6 @@ import { Facebook, Instagram, Youtube, Mail, Phone } from 'lucide-react';
 const quickLinks = [
   { name: 'Home', path: '/' },
   { name: 'SAT Prep', path: '/sat-test-prep' },
-  { name: 'Programs & Pricing', path: '/services' },
   { name: 'Success Stories', path: '/client-stories' },
   { name: 'About', path: '/about' },
   { name: 'FAQ', path: '/faq' },
@@ -28,7 +27,7 @@ const Footer = () => {
               College Prep Services
             </Link>
             <p className="text-brand-dark/80 mt-4 leading-relaxed">
-              Private and small-group SAT prep for Denver-area and online students. Clear programs, transparent pricing, and score guarantees with straightforward terms.
+              Private and small-group SAT prep for Denver-area and online students. Clear programs, transparent pricing, and score guarantees on Pinnacle and Ascension.
             </p>
             <div className="flex space-x-4 pt-4">
               <a href="#" aria-label="Facebook" className="text-gray-500 hover:text-brand-teal transition-colors hover:scale-110">

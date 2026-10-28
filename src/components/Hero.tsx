@@ -19,10 +19,10 @@ const Hero = () => {
               SAT Prep in Denver & Online
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              SAT Prep That Moves Scores — With a Guarantee You Can Actually Read.
+              SAT Prep That Moves Scores.
             </h1>
             <p className="text-xl md:text-2xl text-brand-dark/80 max-w-3xl mx-auto leading-relaxed">
-              Private 1-on-1 programs and small-group cohorts led by Nick Chastain. Clear schedules, transparent pricing, and score guarantees tied to simple commitments.
+              Private 1-on-1 programs and small-group cohorts. Clear schedules, transparent pricing, and score guarantees tied to simple commitments.
             </p>
           </motion.div>
 

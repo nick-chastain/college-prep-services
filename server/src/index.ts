@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 
 const legacySatRedirect = (path: string) => {
   const normalized = path.replace(/\/+$/, '') || '/';
-  return normalized === '/academic-tutoring' || normalized === '/college-admissions-counseling' || normalized.startsWith('/college-admissions-counseling/');
+  return normalized === '/services' || normalized === '/academic-tutoring' || normalized === '/college-admissions-counseling' || normalized.startsWith('/college-admissions-counseling/');
 };
 
 app.use((req, res, next) => {

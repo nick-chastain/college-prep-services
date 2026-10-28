@@ -7,10 +7,14 @@ import Footer from '@/components/Footer';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 import { PAGE_META } from '@/data/seo';
 import {
+  AI_TUTOR_ACCESS_PERIOD_LABEL,
   AI_TUTOR_ENABLED,
-  COHORT_MAX,
+  AI_TUTOR_PRACTICE_TESTS,
   COHORT_PRICING,
+  COHORT_SIGNUP_AMOUNT,
+  GROUP_HOURLY_RATE,
   OFFERS,
+  PRIVATE_HOURLY_RATE,
   formatUSD,
 } from '@/data/offers';
 
@@ -18,7 +22,7 @@ const FAQ = () => {
   useDocumentMeta(PAGE_META.faq.title, PAGE_META.faq.description);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
-  const cohortPriceAnswer = `Cohort pricing depends on how many students are enrolled when the cohort starts. One student is ${formatUSD(COHORT_PRICING[0].pricePerStudent)} with no score guarantee. Two students are ${formatUSD(COHORT_PRICING[1].pricePerStudent)} each with no score guarantee. Three to eight students are ${formatUSD(COHORT_PRICING[2].pricePerStudent)} each, and the +160 guarantee applies. Cohorts are capped at ${COHORT_MAX}. If you enroll early and more students join before the start date, your price drops and we credit the difference.`;
+  const cohortPriceAnswer = `Every student pays ${formatUSD(COHORT_SIGNUP_AMOUNT)} when they sign up. If only your one student is in the class at the first session, you stay at ${formatUSD(COHORT_PRICING[0].pricePerStudent)}. If a second student joins, each pays ${formatUSD(COHORT_PRICING[1].pricePerStudent)}; at three to eight students, each pays ${formatUSD(COHORT_PRICING[2].pricePerStudent)} — and we credit back the difference right after the first class ends. You can cancel for a full refund anytime before the first class; once it starts, the price locks and there are no refunds. The Cohort does not include a score guarantee.`;
 
   const faqs: { question: string; answer: ReactNode }[] = [
     {
@@ -43,7 +47,7 @@ const FAQ = () => {
     },
     {
       question: "Which program is right for my student?",
-      answer: `If your student is already scoring ${OFFERS.pinnacle.startScore.replace("+", "")} or higher and is aiming for 1500+, choose Pinnacle. If they're in the ${OFFERS.ascension.startScore} range and want a big jump, choose Ascension. If you want a structured class at a lower price, choose a Cohort. Not sure? Book a free strategy session and we'll recommend one.`
+      answer: `Pinnacle is only open to students already scoring ${OFFERS.pinnacle.startScore.replace("+", "")} or higher who are aiming for 1500+. A student starting below that cannot enroll in Pinnacle. If they're in the ${OFFERS.ascension.startScore} range and want a 160-point guarantee, choose Ascension. If you want a structured six-week class, choose a Cohort. The Cohort does not include a score guarantee. Not sure? Book a free strategy session and we'll recommend one.`
     },
     {
       question: "How does cohort pricing work?",
@@ -60,7 +64,7 @@ const FAQ = () => {
       question: "How do your score guarantees work?",
       answer: (
         <>
-          Each guarantee requires full participation: attending sessions, completing weekly homework, and taking the scheduled practice tests. If your student meets those requirements and doesn't reach the goal, we provide the additional support described in that program's terms. Guarantees aren't refunds, and they aren't unlimited free tutoring. Cohorts carry the +160 guarantee only when the class starts with 3 or more students.{" "}
+          Pinnacle and Ascension include score guarantees. The Cohort Class and AI Tutor & Materials do not. Each guarantee requires full participation: attending every session, including sessions rescheduled with at least 24 hours' notice, completing weekly homework by the start of the session where it is reviewed, and taking the scheduled practice tests. If your student meets those requirements and doesn't reach the goal, we provide the additional support described in that program's terms. Guarantees aren't refunds, and they aren't unlimited free tutoring.{" "}
           <Link to="/sat-test-prep#guarantees" className="underline text-brand-teal">
             Read the plain-English terms.
           </Link>
@@ -69,12 +73,11 @@ const FAQ = () => {
     },
     {
       question: "What happens if requirements aren't met?",
-      // TODO NICK: hourly rate or "per-session rate"
-      answer: "The guarantee no longer applies. The program ends on its scheduled end date, or you can keep working with us at our standard rate [NICK: hourly rate or \"per-session rate\"]."
+      answer: `The guarantee no longer applies. The program ends on its scheduled end date, or you can keep working with us at our standard rate of ${formatUSD(PRIVATE_HOURLY_RATE)}/hour for private sessions or ${formatUSD(GROUP_HOURLY_RATE)}/hour for group sessions.`
     },
     {
       question: "What are the options for meeting times?",
-      answer: "Private programs (Pinnacle, Ascension) are scheduled flexibly around your student. Cohorts meet once a week at a set time."
+      answer: "Private programs keep the same weekly time for that student. For example, a student might have Tuesdays at 6pm every week for all 10 weeks of Pinnacle. Cohorts meet once a week at one set time for the class."
     },
     {
       question: "How is instruction delivered?",
@@ -82,13 +85,11 @@ const FAQ = () => {
     },
     {
       question: "What are the payment terms?",
-      // TODO NICK: confirm; for Cohorts, is payment due at enrollment or at start?
-      answer: "Payment is due after the first week of the program, following the initial diagnostic meeting. [NICK: confirm; for Cohorts, is payment due at enrollment or at start?] We accept card, Zelle, check, and Venmo."
+      answer: `Payment is due at signup for every program. For a Cohort, each student pays ${formatUSD(COHORT_SIGNUP_AMOUNT)} at signup. If the roster at the first class has a lower per-student price, we credit the difference right after that class. You can cancel a Cohort seat for a full refund anytime before the first class; once it starts, the price locks and there are no refunds. We accept card, Zelle, check, and Venmo.`
     },
     {
       question: "Do you offer a sibling discount?",
-      // TODO NICK: confirm sibling discount still applies, and whether it stacks with Cohort pricing.
-      answer: "Yes, as a partner committed to your family's success, we're happy to offer a 10% discount on all SAT programs for every subsequent child after the first."
+      answer: "Yes. We offer a 10% discount on all SAT programs for every subsequent child after the first. The discount stacks with cohort pricing."
     },
     {
       question: "How does scheduling work around holidays?",
@@ -97,8 +98,8 @@ const FAQ = () => {
     {
       question: "What's the AI Tutor & Materials?",
       answer: AI_TUTOR_ENABLED
-        ? `${OFFERS["ai-tutor"].name} is a ${OFFERS["ai-tutor"].priceLabel} add-on with unlimited access to our practice AI, practice tests, and study materials.`
-        : `An upcoming ${OFFERS["ai-tutor"].priceLabel} add-on with unlimited access to our practice AI, practice tests, and materials. It's launching soon; join the waitlist on our SAT page.`
+        ? `${OFFERS["ai-tutor"].name} is a standalone prep option, and it is also included with the existing programs. It is ${OFFERS["ai-tutor"].priceLabel} for ${AI_TUTOR_ACCESS_PERIOD_LABEL} of access to our practice AI, ${AI_TUTOR_PRACTICE_TESTS} practice tests on our platform, study materials, and the Test Day Psychology Blueprint. It does not include a Weakness Blueprint.`
+        : `A standalone prep option. Once it rolls out, it will also be included in the existing programs. It is ${OFFERS["ai-tutor"].priceLabel} for ${AI_TUTOR_ACCESS_PERIOD_LABEL} of access to our practice AI, ${AI_TUTOR_PRACTICE_TESTS} practice tests on our platform, study materials, and the Test Day Psychology Blueprint. It does not include a Weakness Blueprint. It's launching soon; join the waitlist on our SAT page.`
     }
   ];
 

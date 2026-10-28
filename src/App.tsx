@@ -7,7 +7,6 @@ import { AnimatePresence } from "framer-motion";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
-import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import SatTestPrep from "./pages/SatTestPrep";
 import ClientStories from "./pages/ClientStories";
@@ -27,7 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/services" element={<Navigate to="/sat-test-prep" replace />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/sat-test-prep" element={<SatTestPrep />} />
             <Route path="/college-admissions-counseling" element={<Navigate to="/sat-test-prep" replace />} />

@@ -1,21 +1,15 @@
-import { OFFERS } from "@/data/offers";
-
 export const SITE_URL = "https://collegeprepservicesllc.com";
 
 export const PAGE_META = {
   home: {
     title: "SAT Prep in Denver & Online | College Prep Services",
     description:
-      "Private 1-on-1 SAT tutoring and small-group SAT cohorts with clear pricing and score guarantees. Book a free strategy session.",
+      "Private 1-on-1 SAT tutoring with score guarantees, and small-group SAT cohorts with clear pricing. Book a free strategy session.",
   },
   sat: {
     title: "SAT Prep Programs & Score Guarantees | College Prep Services",
     description:
-      "Compare Pinnacle (1500+), Ascension (+160), and SAT Cohort classes. 1.5-hour weekly sessions, practice tests, and plain-English guarantees.",
-  },
-  services: {
-    title: "SAT Programs & Pricing | College Prep Services",
-    description: `Pinnacle ${OFFERS.pinnacle.priceLabel}, Ascension ${OFFERS.ascension.priceLabel}, Cohorts from ${OFFERS.cohort.priceLabel.replace("From ", "")}, AI Tutor & Materials ${OFFERS["ai-tutor"].priceLabel}. Find the right SAT program for your student.`,
+      "Compare Pinnacle (1500+ guarantee), Ascension (+160 guarantee), and SAT Cohort classes. 1.5-hour weekly sessions, practice tests, and plain-English guarantee terms.",
   },
   about: {
     title: "About Nick Chastain | College Prep Services SAT Prep",

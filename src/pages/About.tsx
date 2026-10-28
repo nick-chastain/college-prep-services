@@ -68,27 +68,13 @@ const About = () => {
         {/* Our Story Section */}
         <section className="py-20 bg-brand-light">
           <div className="container px-6 mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-3xl mx-auto">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className="order-2 lg:order-1"
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
-                  alt="Students studying" 
-                  className="rounded-2xl shadow-lg w-full h-full object-cover"
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="space-y-6 order-1 lg:order-2"
+                className="space-y-6"
               >
                 <h2 className="text-3xl md:text-4xl font-bold">Our Story: The Passion Behind the Partnership</h2>
                 <p className="text-lg text-brand-dark/80 leading-relaxed">
@@ -168,8 +154,7 @@ const About = () => {
                   This passion for solving problems, combined with a desire to help others reach their potential, is what drove him to 
                   start College Prep Services. What began as helping his cousin with a test prep problem quickly 
                   grew into a mission to help high school students earn the SAT score that opens more college options. 
-                  As an avid reader and outdoor enthusiast, Nick believes in the power of a great story and the 
-                  importance of a well-rounded life.
+                  
                 </p>
               </motion.div>
 

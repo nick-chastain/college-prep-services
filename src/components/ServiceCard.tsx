@@ -5,17 +5,18 @@ import { Link } from 'react-router-dom';
 
 interface ServiceCardProps {
   title: string;
-  description: string;
+  lines: string[];
+  price: string;
   icon: ReactNode;
   link: string;
   className?: string;
 }
 
-const ServiceCard = ({ title, description, icon, link, className }: ServiceCardProps) => {
+const ServiceCard = ({ title, lines, price, icon, link, className }: ServiceCardProps) => {
   return (
     <div 
       className={cn(
-        "relative bg-white rounded-2xl p-8 hover-lift transition-all duration-300",
+        "relative bg-white rounded-2xl p-8 hover-lift transition-all duration-300 h-full md:min-h-[30rem] flex flex-col",
         "border-2 border-[rgb(87,155,142)] shadow-lg shadow-brand-teal/10 hover:shadow-2xl hover:shadow-brand-teal/30",
         className
       )}
@@ -28,11 +29,15 @@ const ServiceCard = ({ title, description, icon, link, className }: ServiceCardP
       
       <h3 className="text-xl font-semibold mb-3">{title}</h3>
       
-      <p className="text-brand-dark/80 mb-6 leading-relaxed">
-        {description}
-      </p>
+      <ul className="space-y-2 text-brand-dark/80 leading-relaxed mb-6">
+        {lines.map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
+
+      <p className="text-2xl font-bold text-[rgb(87,155,142)] mt-auto mb-6">{price}</p>
       
-      <Button asChild variant="outline" className="mt-4 rounded-full border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
+      <Button asChild variant="outline" className="rounded-full border-[rgb(87,155,142)] text-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)] hover:text-white">
         <Link to={link}>
           Learn More
         </Link>

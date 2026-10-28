@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { testimonials } from '@/data/testimonials';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 import { PAGE_META } from '@/data/seo';
-import { homeCardLines, OFFERS } from '@/data/offers';
+import { homeCards, OFFERS } from '@/data/offers';
 
 const Index = () => {
   useDocumentMeta(PAGE_META.home.title, PAGE_META.home.description);
@@ -34,25 +34,29 @@ const Index = () => {
   const paths = [
     {
       title: OFFERS.pinnacle.name,
-      description: homeCardLines.pinnacle,
+      lines: [...homeCards.pinnacle.lines],
+      price: homeCards.pinnacle.price,
       icon: <ClipboardList size={28} />,
       link: "/sat-test-prep#pinnacle"
     },
     {
       title: OFFERS.ascension.name,
-      description: homeCardLines.ascension,
+      lines: [...homeCards.ascension.lines],
+      price: homeCards.ascension.price,
       icon: <Map size={28} />,
       link: "/sat-test-prep#ascension"
     },
     {
       title: OFFERS.cohort.name,
-      description: homeCardLines.cohort,
+      lines: [...homeCards.cohort.lines],
+      price: homeCards.cohort.price,
       icon: <CalendarCheck size={28} />,
       link: "/sat-test-prep#cohort"
     },
     {
       title: OFFERS["ai-tutor"].name,
-      description: homeCardLines["ai-tutor"],
+      lines: [...homeCards["ai-tutor"].lines],
+      price: homeCards["ai-tutor"].price,
       icon: <ClipboardList size={28} />,
       link: "/sat-test-prep#ai-tutor"
     }
@@ -94,10 +98,10 @@ const Index = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
             >
               {paths.map((path) => (
-                <motion.div key={path.title} variants={item}>
+                <motion.div key={path.title} variants={item} className="h-full">
                   <ServiceCard {...path} />
                 </motion.div>
               ))}
@@ -140,7 +144,7 @@ const Index = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <p className="text-lg text-brand-dark/80 leading-relaxed">
-                Every program starts with a diagnostic and a Personalized Weakness Blueprint, then targets exactly what's costing your student points. Along the way we coach the skills the SAT really tests under pressure: pacing, test-day nerves, and how to study from data instead of guessing. Those skills stay with your student long after test day.
+                Every live program starts with a diagnostic and a Personalized Weakness Blueprint, then targets exactly what's costing your student points. Along the way we coach the skills the SAT really tests under pressure: pacing, test-day nerves, and how to study from data instead of guessing. Those skills stay with your student long after test day.
               </p>
             </motion.div>
             
@@ -202,19 +206,15 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')] bg-cover bg-center opacity-40" />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/40 to-brand-teal/40" />
-          
-          <div className="container px-6 mx-auto relative z-10">
+        <section className="py-24 bg-[rgb(87,155,142)]">
+          <div className="container px-6 mx-auto">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Start Your Success Story?</h2>
               <p className="text-lg text-white/90 mb-10 leading-relaxed">
                 Book a free strategy session. We'll review your student's current score, target, and test date, and recommend the right program.
               </p>
               <div className="flex justify-center">
-                <Button asChild size="lg" className="rounded-full px-8 bg-[rgb(87,155,142)] hover:bg-[rgb(87,155,142)]/90 text-white">
+                <Button asChild size="lg" className="rounded-full px-8 bg-white text-[rgb(87,155,142)] hover:bg-white/90">
                   <Link to="/contact">
                     Book a Free Strategy Session
                   </Link>

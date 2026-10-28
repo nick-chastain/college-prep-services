@@ -126,7 +126,7 @@ const Contact = () => {
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Book a Free Strategy Session</h1>
               <p className="text-lg text-brand-dark/80 leading-relaxed mb-4">
-                Book a free strategy session or ask a question. We usually reply within one business day [NICK: confirm response time or delete].
+                Book a free strategy session or ask a question. We reply within one business day.
               </p>
               <p className="text-lg text-brand-dark/80 leading-relaxed mb-8">
                 Tell us your student's current or most recent SAT/PSAT score, target score, and planned test date, and we'll recommend the right program.
